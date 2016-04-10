@@ -562,6 +562,108 @@ function rrh_cmb_render_google_map( $field, $meta ) {
 *	-----------------MY METABOXES----------------------
 */
 
+/**
+ * Initialise CMB2
+ */
+
+if ( file_exists( dirname( __FILE__ ) . '/cmb2/init.php' ) ) {
+	require_once dirname( __FILE__ ) . '/cmb2/init.php';
+} elseif ( file_exists( dirname( __FILE__ ) . '/CMB2/init.php' ) ) {
+	require_once dirname( __FILE__ ) . '/CMB2/init.php';
+}
+
+add_action( 'cmb2_admin_init', 'ta_register_repeatable_date_range_metabox' );
+/**
+ * Hook in and add a metabox to demonstrate repeatable grouped fields
+ */
+function ta_register_repeatable_date_range_metabox() {
+	$prefix = 'ta_course_date_';
+
+	/**
+	 * Repeatable Field Groups
+	 */
+	$cmb_group = new_cmb2_box( array(
+		'id'           => $prefix . 'metabox',
+		'title'        => __( 'Date and time', 'cmb2' ),
+		'object_types' => array( 'course', ),
+	) );
+
+	// $group_field_id is the field id string, so in this case: $prefix . 'demo'
+	$group_field_id = $cmb_group->add_field( array( 
+		'id'          => $prefix . 'demo',
+		'type'        => 'group',
+		'description' => __( 'Define one or more dates or date ranges', 'cmb2' ),
+		'options'     => array(
+			'group_title'   => __( 'Date range {#}', 'cmb2' ), // {#} gets replaced by row number
+			'add_button'    => __( 'Add Another Entry', 'cmb2' ),
+			'remove_button' => __( 'Remove Entry', 'cmb2' ),
+			'sortable'      => true, // beta
+			// 'closed'     => true, // true to have the groups closed by default
+		),
+	) );
+
+	/**
+	 * Group fields works the same, except ids only need
+	 * to be unique to the group. Prefix is not needed.
+	 *
+	 * The parent field's id needs to be passed as the first argument.
+	 */
+
+
+	$cmb_group->add_group_field( $group_field_id, array(
+		'name' => __( 'Start', 'cmb2' ),
+		'desc' => __( 'If event repeats, enter start time of first occurance.', 'cmb2' ),
+		'id'   => 'start',
+		'type' => 'text_datetime_timestamp',
+	) );
+
+	$cmb_group->add_group_field( $group_field_id, array(
+		'name' => __( 'End', 'cmb2' ),
+		'desc' => __( 'If event repeats, enter end time of first occurance.', 'cmb2' ),
+		'id'   => 'end',
+		'type' => 'text_datetime_timestamp',
+	) );
+
+	$cmb_group->add_group_field( $group_field_id, array(
+		'name' => __( 'All day', 'cmb2' ),
+		// 'desc' => __( 'All day?', 'cmb2' ),
+		'id'   => $prefix . 'allday',
+		'type' => 'checkbox',
+	) );
+
+	$cmb_group->add_group_field( $group_field_id, array(
+		'name' => __( 'Repeats weekly', 'cmb2' ),
+		// 'desc' => __( 'Repeats?', 'cmb2' ),
+		'id'   => $prefix . 'repeats',
+		'type' => 'checkbox',
+	) );
+
+	$cmb_group->add_group_field( $group_field_id, array(
+		'name'             => __( 'Number of occurances', 'cmb2' ),
+		// 'desc'             => __( 'field description (optional)', 'cmb2' ),
+		'id'               => $prefix . 'occurances',
+		'type'             => 'select',
+		'options'          => array(
+			'repeats 2'     => __( '2', 'cmb2' ),
+			'repeats 3'     => __( '3', 'cmb2' ),
+			'repeats 4'     => __( '4', 'cmb2' ),
+			'repeats 5'     => __( '5', 'cmb2' ),
+			'repeats 6'     => __( '6', 'cmb2' ),
+			'repeats 7'     => __( '7', 'cmb2' ),
+			'repeats 8'     => __( '8', 'cmb2' ),
+			'repeats 9'     => __( '9', 'cmb2' ),
+			'repeats 10'     => __( '10', 'cmb2' ),
+			),
+	) );
+
+}
+
+
+
+/**
+*   vv Old date picker vv
+*/
+
 add_action( 'add_meta_boxes', 'ta_add_date_box' );
 
 // backwards compatible (before WP 3.0)
@@ -570,7 +672,7 @@ add_action( 'add_meta_boxes', 'ta_add_date_box' );
 /* Do something with the data entered */
 add_action( 'save_post', 'ta_save_date_data' );
 
-/* Adds a box to the main column on the Post and Page edit screens */
+/* Adds a box to the main column on the course edit screens */
 function ta_add_date_box() {
 		$screens = array( 'course' );
 		foreach ($screens as $screen) {
