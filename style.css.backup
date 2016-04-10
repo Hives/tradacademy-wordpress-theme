@@ -1,0 +1,92 @@
+/*
+Theme Name: Paul
+Description: Pauly's Trad Academy theme.
+Author: Pablo
+Version: 0.1
+*/
+* {
+  box-sizing: border-box; }
+
+body {
+  width: 100%;
+  position: relative;
+  background-color: #ebd5d1; }
+
+#container {
+  width: 960px;
+  margin: 0 auto;
+  background-color: #d8eeee; }
+
+header {
+  width: 940px;
+  margin: 10px;
+  background-color: #91cf93; }
+
+#site-navigation ul {
+  margin: 0;
+  padding: 0;
+  list-style: none; }
+#site-navigation ul li {
+  position: relative; }
+#site-navigation > ul > li {
+  display: inline-block; }
+#site-navigation li {
+  display: block; }
+#site-navigation li ul {
+  display: none; }
+#site-navigation ul li a {
+  display: block;
+  text-decoration: none;
+  color: #ffffff;
+  border-top: 1px solid white;
+  padding: 5px 15px 5px 15px;
+  background: #1e7c9a;
+  margin-left: 1px;
+  white-space: nowrap; }
+#site-navigation ul li a:hover {
+  background: #3b3b3b; }
+#site-navigation li:hover ul {
+  display: block;
+  position: absolute; }
+#site-navigation li:hover li {
+  float: none;
+  font-size: 11px; }
+#site-navigation li:hover a {
+  background: #3b3b3b; }
+#site-navigation li:hover li a:hover {
+  background: #1e7c9a; }
+
+#main {
+  width: 700px;
+  margin: 10px;
+  float: left;
+  background-color: #faf176; }
+
+article.course {
+  clear: both; }
+
+.course-details {
+  overflow: auto;
+  zoom: 1; }
+
+.time {
+  width: 300px;
+  float: left;
+  background-color: #d8eeee; }
+
+.space {
+  width: 380px;
+  float: right;
+  background-color: #ebd5d1; }
+
+.location-map {
+  height: 200px; }
+
+#sidebar {
+  width: 220px;
+  margin: 10px;
+  float: right;
+  background-color: #f9b262; }
+
+html pre {
+  font-size: 0.8em; }

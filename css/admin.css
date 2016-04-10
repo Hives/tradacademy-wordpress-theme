@@ -1,0 +1,13 @@
+#ta_initial_date_field {
+	display: none;
+}
+
+select.cmb_select_small {
+	width: 100px;
+	margin-right: 15px;
+}
+
+#_cmb_google_map {
+	width: 400px;
+	height: 300px;
+}
