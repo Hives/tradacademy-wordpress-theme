@@ -1163,6 +1163,7 @@ function get_courses_for_sidebar () {
 		$initial_date = intval($meta['_ta_initial_date'][0]);
 		// $start_time = intval($meta['_ta_start_time'][0]);
 		$duration = intval($meta['_ta_duration'][0]);
+		dump($meta);
 		$num_weeks = intval($meta['_ta_num_weeks'][0]);
 
 		$date = new DateTime();

@@ -11,3 +11,19 @@ select.cmb_select_small {
 	width: 400px;
 	height: 300px;
 }
+
+/*
+*    Rules for date range meta box
+*/
+
+#ta_course_date_meta .date {
+    width: 200px;
+}
+
+#ta_course_date_meta .time {
+    width: 70px;
+}
+
+#ta_course_date_meta .hidden {
+    /*display: none;*/
+}
