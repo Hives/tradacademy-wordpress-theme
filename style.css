@@ -70,8 +70,11 @@ a {
   -moz-box-sizing: border-box;
   box-sizing: border-box; }
 
-html {
+html.local {
   background-image: url("img/william-morris-tile-3-local.png"); }
+
+html.production {
+  background-image: url("img/william-morris-tile-3.png"); }
 
 body {
   -webkit-box-sizing: content-box;
