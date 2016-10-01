@@ -15,12 +15,14 @@
 img.alignleft {
 	display: inline;
 	float: left;
+	clear: both;
   margin-right: 1.5em;
 }
 .alignright,
 img.alignright {
 	display: inline;
 	float: right;
+	clear: both;
   margin-left: 1.5em;
 }
 .aligncenter,

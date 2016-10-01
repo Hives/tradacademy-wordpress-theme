@@ -1,6 +1,6 @@
 <?php
 /**
-*   -----------------THEMES AND SCRIPTS----------------------
+*   -----------------THEME STYLES AND JS----------------------
 */
 
 function theme_styles() {
@@ -18,9 +18,18 @@ function theme_styles() {
         $ver = null,
         $media = 'all'
     );
+    /*
     wp_enqueue_style(
         "main",
         $src = get_template_directory_uri() . '/style.css',
+        $deps = array("html5-boilerplate-main"),
+        $ver = null,
+        $media = 'all'
+    );
+    */
+    wp_enqueue_style(
+        "old",
+        $src = get_template_directory_uri() . '/style-old.css',
         $deps = array("html5-boilerplate-main"),
         $ver = null,
         $media = 'all'
@@ -34,25 +43,6 @@ function theme_styles() {
     );
 }
 add_action('wp_enqueue_scripts', 'theme_styles');
-
-function admin_styles() {
-    wp_enqueue_style(
-        "admin",
-        $src = get_template_directory_uri() . '/css/admin.css',
-        $deps = array(),
-        $ver = null,
-        $media = 'all'
-    );
-    wp_enqueue_style(
-        "jquery-timepicker",
-        $src = get_template_directory_uri() . '/lib/jquery-timepicker/jquery.timepicker.css',
-        $deps = array(),
-        $ver = null,
-        $media = 'all'
-    );
-}
-add_action('admin_enqueue_scripts', 'admin_styles');
-
 
 function theme_scripts() {
     wp_enqueue_script(
@@ -100,6 +90,29 @@ function theme_scripts() {
 }
 add_action('wp_enqueue_scripts', 'theme_scripts');
 
+
+/**
+*   -----------------ADMIN STYLES AND JS----------------------
+*/
+
+function admin_styles() {
+    wp_enqueue_style(
+        "admin",
+        $src = get_template_directory_uri() . '/css/admin.css',
+        $deps = array(),
+        $ver = null,
+        $media = 'all'
+    );
+    wp_enqueue_style(
+        "jquery-timepicker",
+        $src = get_template_directory_uri() . '/lib/jquery-timepicker/jquery.timepicker.css',
+        $deps = array(),
+        $ver = null,
+        $media = 'all'
+    );
+}
+add_action('admin_enqueue_scripts', 'admin_styles');
+
 function admin_scripts() {
     wp_enqueue_script(
         "plugins",
@@ -124,6 +137,13 @@ function admin_scripts() {
     wp_enqueue_script(
         "jquery-timepicker",
         $src = get_template_directory_uri() . '/lib/jquery-timepicker/jquery.timepicker.min.js',
+        $deps = array("jquery"),
+        $ver = null,
+        $in_footer = true
+    );
+    wp_enqueue_script(
+        "datepair",
+        $src = get_template_directory_uri() . '/lib/Datepair.js/dist/jquery.datepair.min.js',
         $deps = array("jquery"),
         $ver = null,
         $in_footer = true

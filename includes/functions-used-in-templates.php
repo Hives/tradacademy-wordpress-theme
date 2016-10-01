@@ -91,6 +91,77 @@ function print_menu () {
 <?php }
 
 
+function print_menu_2 () {
+    global $wpdb;
+
+    $pages = $wpdb->get_results( "SELECT * FROM wp_posts WHERE post_type = 'page' AND post_status = 'publish' ORDER BY menu_order" );
+
+    $pages_associative = array();
+    foreach ($pages as $page) {
+        $pages_associative[$page->ID] = $page;
+    }
+
+    $courses = $wpdb->get_results( "SELECT * FROM wp_posts WHERE post_type = 'course' AND post_status = 'publish' ORDER BY menu_order" );
+    $courses = array_filter($courses, "get_current_courses");
+
+    $tutors = $wpdb->get_results( "SELECT * FROM wp_posts WHERE post_type = 'tutor' AND post_status = 'publish' ORDER BY menu_order" );
+
+    $page_hierarchy = get_page_hierarchy( $pages );
+    $page_list = array();
+    foreach ($page_hierarchy as $ID => $title) {
+        // dump();
+        $page_list[] = array('ID' => $ID, 'title' => $pages_associative[$ID]->post_title);
+    }
+
+    // dump($courses);
+
+    $parents = array(0);
+    ?>
+
+    <nav class="navbar navbar-default">
+      <div class="container container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <!-- <a class="navbar-brand" href="#">Home</a> -->
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+          <ul class="nav navbar-nav">
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">What's on <span class="caret"></span></a>
+              <ul class="dropdown-menu">
+                <?php foreach ($courses as $course) { ?>
+                    <li><a href="<?= get_permalink( $course->ID ); ?>"><?= $course->post_title; ?></a></li>
+                <?php } ?>
+                <li role="separator" class="divider"></li>
+                <li><a href="#">Historical courses</a></li>
+              </ul>
+            </li>
+            <li><a href="<?= get_permalink( get_option( 'page_for_posts' ) ); ?>">News</a></li>
+            <li><a href="#">About</a></li>
+            <li><a href="#">Contact</a></li>
+          </ul>
+          <form class="navbar-form navbar-left">
+            <div class="form-group">
+              <input type="text" class="form-control" placeholder="Search">
+            </div>
+            <button type="submit" class="btn btn-default">Submit</button>
+          </form>
+        </div><!-- /.navbar-collapse -->
+      </div><!-- /.container-fluid -->
+    </nav>
+
+<?php }
+
+
+
 function print_course_info ($meta, $brief = false) {
 
     // TIME

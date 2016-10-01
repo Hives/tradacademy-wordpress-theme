@@ -1,3 +1,9 @@
+<?php 
+
+$new = 1; // triggers new header, <head> element etc.
+
+?>
+
 <?php get_header(); ?>
 
 <main class="clearfix">
@@ -6,7 +12,7 @@
 		$meta = get_post_meta( get_the_ID() );
 	?>
 
-	<article class="course">
+	<article class="course container">
 		<header>
 			<h1><?php the_title(); ?></h1>
 			<div class="course-info">
@@ -14,13 +20,15 @@
 			</div>
 			<?php print_social_media_buttons(); ?>
 		</header>
-		<?php the_content(); ?>
-		<section class="location">
+		<section class="course-description col-md-8">
+			<?php the_content(); ?>			
+		</section>
+		<aside class="location col-md-4">
 			<h3>Location</h3>
 			<div class="clearfix">
 				<?php print_course_location_map($meta); ?>
 			</div>
-		</section>
+		</aside>
 	</article>
 
 	<?php endwhile; else: ?>

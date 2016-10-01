@@ -1,8 +1,14 @@
+<?php 
+
+$new = 1; // triggers new header, <head> element etc.
+
+?>
+
 <?php get_header(); ?>
 
 <main>
 	<?php if ( have_posts() ) : while ( have_posts() ) : the_post(); ?>
-		<article class="blog-post clearfix">
+		<article class="container blog-post clearfix">
 			<header>
 				<?php if ( is_single() ): ?>
 					<h1><?php the_title(); ?></h1>

@@ -3,6 +3,7 @@
 Template Name: Front Page (carousel)
 */
 ?>
+<?php $new = 1; ?>
 <?php get_header(); ?>
 
 <?php print_carousel(); ?>

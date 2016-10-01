@@ -217,86 +217,124 @@ function rrh_cmb_render_google_map( $field, $meta ) {
 
 
 
+/**
+ * Load the CMB2 library
+ */
 
+if ( file_exists( get_template_directory() . '/lib/cmb2/init.php' ) ) {
+    require_once get_template_directory() . '/lib/cmb2/init.php';
+} elseif ( file_exists( get_template_directory() . '/lib/CMB2/init.php' ) ) {
+    require_once get_template_directory() . '/lib/CMB2/init.php';
+}
 
 /**
-*   My metabox - new datepicker
+*   Define a google-style datepicker to use with CMB2 library
 */
 
-/**
- *  Having a go at writing my own metaboxes
- *  http://themefoundation.com/wordpress-meta-boxes-guide/
- */
-
-function ta_course_date_meta() {
-    add_meta_box( 'ta_course_date_meta', 'Date', 'ta_course_date_meta_callback', 'course' );
-}
-// COMMENT THIS OUT FOR THE MOMENT
-// add_action( 'add_meta_boxes', 'ta_course_date_meta' );
-
-/**
- * Outputs the content of the meta box
- */
-function ta_course_date_meta_callback( $post ) {
-    wp_nonce_field( basename( __FILE__ ), 'ta_course_date_nonce' );
-    $ta_course_date_stored_meta = get_post_meta( $post->ID );
+function cmb2_render_callback_for_google_style_datepicker( $field, $escaped_value, $object_id, $object_type, $field_type_object ) {
+    // echo $field_type_object->input( array( 'type' => 'email' ) );
+    // echo "<h1>Hello</h1>";
     ?>
+        <div class="cmb-th">
+            <label>Date</label>
+        </div>
+        <div class="cmb-td date-range-initial">
+            <input type="text" class="date human start" />
+            <input type="text" class="robot start hidden" />
+            <input type="text" class="time start" /> to
+            <input type="text" class="time end" />
+            <input type="text" class="date human end" />
+            <input type="text" class="robot end hidden" />
+        </div>
 
-<table class="form-table cmb_metabox">
-    <tbody>
-        <tr>
-            <th style="width:18%">
-                <label>Date (initial)</label>
-            </th>
-            <td class="date-range-initial">
-                <input type="text" class="date human start" />
-                <input type="text" class="robot start hidden" />
-                <input type="text" class="time start" /> to
-                <input type="text" class="time end" />
-                <input type="text" class="date human end" />
-                <input type="text" class="robot end hidden" />
-            </td>
-        </tr>
-        <tr>
-            <th style="width:18%">
-                <label>All day</label>
-            </th>
-            <td>
-                <input type="checkbox" class="all-day" value="all-day">
-            </td>
-        </tr>
-        <tr>
-            <th style="width:18%">
-                <label>Repeats</label>
-            </th>
-            <td>
-                <input type="checkbox" class="repeats" value="repeats">
-            </td>
-        </tr>
-        <tr class="weeks hidden">
-            <th style="width:18%">
-                <label>Number of weeks</label>
-            </th>
-            <td>
-                <select>
-                    <?php for ($i=2; $i < 11; $i++) { ?>
-                        <option value="<?php echo $i; ?>" <?php echo ($i == 6 ? "selected" : ""); ?> >
-                            <?php echo $i; ?>
-                        </option>
-                    <?php } ?>
-                </select>
-                <p class="cmb_metabox_description final-date"></p>
-            </td>
-        </tr>
-    </tbody>
-</table>
+    <?php
+}
+add_action( 'cmb2_render_google_style_datepicker', 'cmb2_render_callback_for_google_style_datepicker', 10, 5 );
 
-<div class="td_row">
-</div>
-<p id="basicExample">
-</p>
 
-<?php
+
+
+
+
+add_action( 'cmb2_admin_init', 'ta_register_repeatable_daterange_field_metabox' );
+/**
+ * Hook in and add a repeatable daterange group of metaboxes
+ */
+function ta_register_repeatable_daterange_field_metabox() {
+    $prefix = 'ta_daterange_';
+
+    /**
+     * Repeatable Field Groups
+     */
+    $ta_daterange_group = new_cmb2_box( array(
+        'id'           => $prefix . 'metabox',
+        'title'        => __( 'Date (range(s))', 'cmb2' ),
+        'object_types' => array( 'course', ),
+    ) );
+
+    // $group_field_id is the field id string, so in this case: $prefix . 'demo'
+    $group_field_id = $ta_daterange_group->add_field( array(
+        'id'          => $prefix . 'group',
+        'type'        => 'group',
+        'description' => __( "Date ranges. You can pick more than one, in case there's a break or something", 'cmb2' ),
+        'options'     => array(
+            'group_title'   => __( 'Date range {#}', 'cmb2' ), // {#} gets replaced by row number
+            'add_button'    => __( 'Add Another Date Range', 'cmb2' ),
+            'remove_button' => __( 'Remove Date Range', 'cmb2' ),
+            // 'sortable'      => true, // beta
+            // 'closed'     => true, // true to have the groups closed by default
+        ),
+    ) );
+
+    /**
+     * Group fields works the same, except ids only need
+     * to be unique to the group. Prefix is not needed.
+     *
+     * The parent field's id needs to be passed as the first argument.
+     */
+
+    $ta_daterange_group->add_group_field( $group_field_id, array(
+        // 'name' => __( 'All day', 'cmb2' ),
+        // 'desc' => __( 'field description (optional)', 'cmb2' ),
+        'id'   => $prefix . 'date',
+        'type' => 'google_style_datepicker',
+    ) );
+
+    $ta_daterange_group->add_group_field( $group_field_id, array(
+        'name'        => __( 'All day', 'cmb2' ),
+        // 'desc'        => __( 'field description (optional)', 'cmb2' ),
+        'id'          => $prefix . 'all-day',
+        'type'        => 'checkbox',
+        'row_classes' => 'all-day',
+    ) );
+
+    $ta_daterange_group->add_group_field( $group_field_id, array(
+        'name' => __( 'Repeats', 'cmb2' ),
+        // 'desc' => __( 'field description (optional)', 'cmb2' ),
+        'id'   => $prefix . 'repeats',
+        'type' => 'checkbox',
+        'row_classes' => 'repeats',
+    ) );
+
+    $ta_daterange_group->add_group_field( $group_field_id, array(
+        'name'             => __( 'Number of weeks', 'cmb2' ),
+        'desc'             => __( ' ', 'cmb2' ), // leave this blank - calculated final date 
+                                                // is inserted here via JS
+        'id'               => $prefix . 'weeks',
+        'type'             => 'select',
+        'row_classes'      => 'weeks',
+        'options'          => array(
+            '2' => __( '2', 'cmb2' ),
+            '3' => __( '3', 'cmb2' ),
+            '4' => __( '4', 'cmb2' ),
+            '5' => __( '5', 'cmb2' ),
+            '6' => __( '6', 'cmb2' ),
+            '7' => __( '7', 'cmb2' ),
+            '8' => __( '8', 'cmb2' ),
+            '9' => __( '9', 'cmb2' ),
+            '10' => __( '10', 'cmb2' ),
+        ),
+    ) );
 
 }
 
@@ -305,7 +343,7 @@ function ta_course_date_meta_callback( $post ) {
 
 
 /**
-*   vv Old date picker vv
+*   Old (PZA1) date picker
 */
 
 add_action( 'add_meta_boxes', 'ta_add_date_box' );
@@ -429,16 +467,7 @@ function ta_print_date_box( $post ) {
 /* When the post is saved, saves our custom data */
 function ta_save_date_data( $post_id ) {
 
-    // First we need to check if the current user is authorised to do this action.
-    if ( 'page' == $_POST['post_type'] ) {
-        if ( ! current_user_can( 'edit_page', $post_id ) )
-                return;
-    } else {
-        if ( ! current_user_can( 'edit_post', $post_id ) )
-                return;
-    }
-
-    // Secondly we need to check if the user intended to change this value.
+    // we need to check if the user intended to change this value.
     if ( ! isset( $_POST['ta_date_picker_noncename'] ) || ! wp_verify_nonce( $_POST['ta_date_picker_noncename'], plugin_basename( __FILE__ ) ) )
             return;
 

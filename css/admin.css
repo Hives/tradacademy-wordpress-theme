@@ -24,6 +24,20 @@ select.cmb_select_small {
     width: 70px;
 }
 
-#ta_course_date_meta .hidden {
-    /*display: none;*/
+#ta_course_date_meta .daterange {
+    padding: 10px;
+    margin-bottom: 10px;
+    box-shadow: 10px 5px 5px black;
+}
+
+#ta_daterange_metabox .cmb-type-google-style-datepicker input {
+    margin: 0px;
+}
+
+#ta_daterange_metabox .cmb-type-google-style-datepicker input.date {
+    width: 230px;
+}
+
+#ta_daterange_metabox .cmb-type-google-style-datepicker input.time {
+    width: 70px;
 }
