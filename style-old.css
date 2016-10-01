@@ -1,0 +1,336 @@
+/*
+Theme Name: PZA2
+Description: Pauly's Ongoing Trad Academy theme.
+Author: Pablo
+Version: 0.5
+*/
+@import url(fonts/cabin/stylesheet.css);
+/*-----------------------------------------------
+	Table of contents
+
+	$1. Typography
+	$2. Layout
+	$3. Bad browser styles
+-------------------------------------------------*/
+/*-----------------------------------------------
+	$1. Typography
+-------------------------------------------------*/
+a {
+  text-decoration: none; }
+  a:hover {
+    text-decoration: underline; }
+
+html {
+  font-family: "Cabin", Sans-Serif;
+  font-style: normal; }
+
+strong {
+  font-weight: bold; }
+
+h1, h2, h3, h4, h5, h6 {
+  clear: both;
+  font-weight: bold; }
+
+#site-title {
+  margin: 0;
+  font-size: 100px;
+  text-shadow: 3px 3px 0px #6a6a6a;
+  line-height: 0.8em;
+  background-image: url("img/trad-academy-logo.png");
+  background-size: contain;
+  background-repeat: no-repeat;
+  height: 100px;
+  width: 565.5px; }
+  #site-title a:hover {
+    text-decoration: none; }
+
+#site-description {
+  display: none;
+  font-size: 24px;
+  color: #59682f; }
+
+.course-info, .blog-meta {
+  font-style: italic;
+  font-size: 90%; }
+
+.course-summary > div {
+  font-size: 0.9em; }
+
+a {
+  color: #780505; }
+
+/*-----------------------------------------------
+	$2. Basic layout
+-------------------------------------------------*/
+.clear {
+  clear: both; }
+
+* {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box; }
+
+html.local {
+  background-image: url("img/william-morris-tile-3-local.png"); }
+
+html.production {
+  background-image: url("img/william-morris-tile-3.png"); }
+
+body {
+  -webkit-box-sizing: content-box;
+  -moz-box-sizing: content-box;
+  box-sizing: content-box;
+  border-left: thin solid black;
+  border-right: thin solid black;
+  margin: 0 auto;
+  width: 1000px;
+  -webkit-box-shadow: 0 0 10px 5px rgba(0, 0, 0, 0.3);
+  -moz-box-shadow: 0 0 10px 5px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 0 10px 5px rgba(0, 0, 0, 0.3);
+  background-color: white; }
+
+div.wp-caption {
+  font-size: 80%;
+  padding: 1px;
+  border: thin solid #aaaaaa; }
+  div.wp-caption img {
+    box-sizing: content-box;
+    display: block; }
+
+p img {
+  padding: 1px;
+  border: thin solid #aaaaaa;
+  box-sizing: content-box;
+  display: block;
+  margin-bottom: 10px; }
+
+#masthead {
+  width: 100%;
+  position: relative;
+  background-repeat: no-repeat; }
+  #masthead > div {
+    padding: 40px 40px; }
+  #masthead #mascot {
+    width: 140px;
+    position: absolute;
+    bottom: 15px;
+    right: 75px; }
+
+#site-navigation {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  background-color: #780505;
+  color: white;
+  padding: 0 30px;
+  /*
+  font-weight: bold;
+  > ul > li > ul {
+  	font-weight: normal;
+  }
+  */ }
+  #site-navigation > h2 {
+    display: none; }
+  #site-navigation ul {
+    margin: 0;
+    padding: 0;
+    list-style: none; }
+  #site-navigation ul li {
+    position: relative; }
+  #site-navigation > ul > li {
+    display: inline-block; }
+  #site-navigation li {
+    display: block; }
+  #site-navigation li ul {
+    display: none; }
+  #site-navigation ul li a {
+    display: block;
+    text-decoration: none;
+    color: inherit;
+    font-size: 18px;
+    padding: 10px;
+    line-height: 1em;
+    white-space: nowrap; }
+  #site-navigation ul li ul li a {
+    font-family: "Cabin";
+    font-size: 14px; }
+  #site-navigation ul li a:hover {
+    background: #e3cd9c; }
+  #site-navigation li:hover ul {
+    display: block;
+    position: absolute; }
+  #site-navigation li:hover li {
+    float: none; }
+  #site-navigation li:hover a {
+    background: #e3cd9c; }
+  #site-navigation li:hover hr {
+    height: 1px;
+    margin: 0;
+    border: 0;
+    display: block;
+    background-color: #c9ba8b;
+    color: #c9ba8b;
+    font-size: 10px; }
+  #site-navigation li:hover li a:hover {
+    background: #c9ba8b; }
+
+.carousel-full {
+  -webkit-box-sizing: content-box;
+  -moz-box-sizing: content-box;
+  box-sizing: content-box;
+  position: relative;
+  width: 100%;
+  height: 350px;
+  overflow: hidden;
+  clear: both; }
+  .carousel-full .carousel-element {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    padding: 20px;
+    left: 9999px; }
+    .carousel-full .carousel-element.first {
+      left: 0; }
+  .carousel-full .carousel-text {
+    position: relative;
+    background-color: rgba(255, 255, 255, 0.6);
+    width: 220px;
+    height: 100%;
+    float: right;
+    margin-right: 10px;
+    padding: 20px;
+    z-index: 1; }
+    .carousel-full .carousel-text .controls {
+      position: absolute;
+      width: 100%;
+      text-align: center;
+      bottom: 20px;
+      left: 0; }
+    .carousel-full .carousel-text h2 {
+      margin-top: 0; }
+  .carousel-full img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 0; }
+
+main {
+  width: 700px;
+  margin-left: 30px;
+  margin-top: 30px;
+  margin-bottom: 50px;
+  float: left;
+  padding: 10px; }
+
+article h1 {
+  margin: 0; }
+
+.blog-post header {
+  margin-bottom: 40px; }
+.blog-post .blog-meta {
+  color: #aaaaaa;
+  font-size: 90%; }
+
+.blog-divider {
+  margin-bottom: 40px;
+  clear: both; }
+
+article.course header > * {
+  margin-bottom: 10px; }
+
+.course.brief {
+  width: 50%;
+  float: left;
+  margin-bottom: 40px; }
+  .course.brief.odd {
+    padding-right: 10px;
+    clear: both; }
+  .course.brief.even {
+    padding-left: 10px; }
+
+.social-media-buttons {
+  height: 29px; }
+  .social-media-buttons > div, .social-media-buttons > iframe {
+    font-size: 1px;
+    display: inline-block; }
+
+.location {
+  clear: both; }
+  .location > div {
+    position: relative; }
+  .location .address {
+    width: 290px;
+    height: 100%;
+    float: right; }
+    .location .address p {
+      margin-top: 0; }
+  .location .google-map {
+    width: 370px;
+    height: 250px;
+    float: left; }
+  .location .reset-map {
+    position: absolute;
+    bottom: 0;
+    left: 370px;
+    margin-left: 20px;
+    target-new: tab; }
+
+#sidebar {
+  width: 220px;
+  margin: 20px 30px 20px 0;
+  font-size: 90%;
+  height: 100%;
+  float: right;
+  background-color: #eee; }
+  #sidebar > h2 {
+    display: none; }
+  #sidebar > section {
+    margin-bottom: 20px;
+    padding: 10px; }
+    #sidebar > section > h3 {
+      margin-top: 0; }
+  #sidebar input[type=text] {
+    width: 100%; }
+  #sidebar:last-child {
+    margin-bottom: 10px; }
+  #sidebar .cat {
+    display: block;
+    margin: 0 auto;
+    opacity: 0.1; }
+
+.widget_ta_social_media .fb-pic {
+  width: 50px;
+  height: 50px;
+  float: left;
+  margin-right: 10px; }
+.widget_ta_social_media a.fb-link {
+  font-size: 16pt;
+  font-weight: bold;
+  display: block;
+  color: #3B5998; }
+.widget_ta_social_media .fb-like {
+  height: 29px; }
+
+.widget_ta_calendar .course-summary {
+  margin-top: 10px;
+  padding-bottom: 10px;
+  border-bottom: thin solid rgba(0, 0, 0, 0.2); }
+  .widget_ta_calendar .course-summary:last-child {
+    border: 0;
+    padding: 0; }
+  .widget_ta_calendar .course-summary h4 {
+    margin: 0; }
+
+footer {
+  font-size: 0.8em;
+  clear: both;
+  margin: 0 20px;
+  padding: 10px;
+  border-top: thin solid #aaaaaa;
+  text-align: center; }
+
+/*-----------------------------------------------
+	$3. Bad browser styles
+-------------------------------------------------*/
+
+/*# sourceMappingURL=style.css.map */
