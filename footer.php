@@ -9,8 +9,10 @@
  */
 
 ?>
-        <footer>
-            &copy; Trad Academy 2013
+        <footer class="container">
+            <p>
+              &copy; Trad Academy 2016
+            </p>
         </footer>
         <?php // wp_footer(); ?>
 
