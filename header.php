@@ -2,6 +2,8 @@
 
 	global $new;
 
+	$environment = WP_DEBUG == true ? "test" : "production";
+
 	if ($new) {
 
 /**
@@ -10,8 +12,6 @@
 
 ?>
 <!DOCTYPE html>
-<!-- THIS IS THE NEW HEADER -->
-<?php $environment = WP_DEBUG == true ? "local" : "production"; ?>
 <!--[if lt IE 7]>      <html class="no-js <?php echo $environment; ?> lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
 <!--[if IE 7]>         <html class="no-js <?php echo $environment; ?> lt-ie9 lt-ie8"> <![endif]-->
 <!--[if IE 8]>         <html class="no-js <?php echo $environment; ?> lt-ie9"> <![endif]-->
@@ -34,6 +34,14 @@
 
 	</head>
 	<body class="clearfix">
+
+	<?php if ( $environment == "test" ) { ?>
+		<div id="test-server-warning">
+			<div class="container">
+				<p>This is a test version of the site</p>
+			</div>
+		</div>
+	<?php } ?>
 
 		<header id="masthead" class="container" role="banner">
 			<div>

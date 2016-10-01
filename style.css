@@ -5,6 +5,18 @@ Author: Pablo
 Version: 0.6
 */
 
+#test-server-warning {
+	background-image: url(img/stripe.png);
+	background-color: yellow;
+}
+#test-server-warning p {
+	background-color: rgba(255, 255, 255, 0.85);
+	padding: 10px;
+	margin: 10px;
+	font-weight: bold;
+	font-size: 150%;
+}
+
 header {
 	text-align: center;
 }
