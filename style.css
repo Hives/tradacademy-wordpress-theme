@@ -37,6 +37,7 @@ main > section:nth-of-type(even) {
 	border-radius: 20px;
 	text-align: center;
 	padding: 20px;
+	margin-bottom: 20px;
 	font-size: 120%;
 	background-color: #6aa84f
 }

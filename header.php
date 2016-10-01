@@ -17,7 +17,7 @@
 <!--[if IE 8]>         <html class="no-js <?php echo $environment; ?> lt-ie9"> <![endif]-->
 <!--[if gt IE 8]><!--> <html class="no-js <?php echo $environment; ?>"> <!--<![endif]-->
 	<head>
-		<meta charset="utf-8">
+		<meta charset="UTF-8">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 		 <title>!!! <?php bloginfo('name'); ?> <?php wp_title(); ?></title>
 		<meta name="description" content="<?php bloginfo( 'description' ); ?>">

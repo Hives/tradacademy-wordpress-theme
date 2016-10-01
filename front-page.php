@@ -95,6 +95,7 @@ usort($coming_up, 'event_sorter');
 		</div>
 	</section>
 
+	<?php /* Commented this out, but could be useful for allowing editable content on front page?
 	<?php if ( have_posts() ) : while ( have_posts() ) : the_post(); ?>
 		<article class="blog-post clearfix">
 			<header class="visuallyhidden">
@@ -106,8 +107,9 @@ usort($coming_up, 'event_sorter');
 	<?php endwhile; else: ?>
 		<p><?php _e( 'Sorry, no posts matched your criteria.' ); ?></p>
 	<?php endif; ?>
+	*/ ?>
 
 </main>
 
-<?php get_sidebar(); ?>
+<?php // get_sidebar(); ?>
 <?php get_footer(); ?>
