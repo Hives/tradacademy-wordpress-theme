@@ -1,0 +1,227 @@
+/*
+Theme Name: PZA2
+Description: Pauly's Ongoing Trad Academy theme.
+Author: Pablo
+Version: 0.6
+*/
+
+/* colours */
+
+$lightGrey: #eee;
+$darkGrey: #ccc;
+
+/* flexi layout styles */
+
+html {
+	font-size: 16pt;
+}
+
+.container {
+	max-width: 1170px;
+	margin: 0 auto;
+}
+
+/* test server warning */
+
+#test-server-warning {
+	background-image: url(img/stripe.png);
+	background-color: yellow;
+	padding: 10px;
+	div {
+		background-color: rgba(255, 255, 255, 0.85);
+		padding: 10px;
+		font-weight: bold;
+		font-size: 150%;		
+	}
+}
+
+/* masthead */
+
+header {
+	text-align: center;
+}
+
+/* nav bar */
+
+.navbar {
+	background-color: $lightGrey;
+	// padding: 10px;
+}
+
+.navbar-toggle {
+	display: none;
+}
+
+// copied from https://codepen.io/philhoyt/pen/ujHzd
+#primary_nav_wrap  {
+
+	z-index: 999999999999999999;
+
+	ul {
+		list-style:none;
+		position:relative;
+		// float:left;
+		margin:0;
+		padding:0;
+
+		a {
+			display:block;
+			color:#333;
+			padding:10px 15px;
+			text-decoration: none;
+		}
+
+		li {
+			float:left;
+			margin:0;
+			padding:0;
+
+			&.current-menu-item {
+				background:#ddd;
+			}
+
+			&:hover {
+				background:$darkGrey;
+
+				> ul {
+					display:block;
+				}
+			}
+		}
+
+		ul {
+			display:none;
+			position:absolute;
+			// top:100%;
+			left:0;
+			background:$lightGrey;
+			padding:0;
+
+			li {
+				float:none;
+				// width:200px;
+			}
+
+			a {
+				// line-height:120%;
+				padding:10px 15px;
+			}
+
+			ul {
+				top:0;
+				left:100%;
+			}
+		}
+
+	}
+
+}
+
+.navbar-form {
+	float: right;
+	padding: 6px 0 7px;
+}
+
+.form-group	{
+	display: inline;
+}
+
+/* coming up carousel */
+
+#coming-up .date, #coming-up .location {
+	font-style: italic;
+}
+
+#coming-up .button {
+	border-radius: 20px;
+	text-align: center;
+	padding: 20px;
+	margin-bottom: 20px;
+	font-size: 120%;
+	background-color: #6aa84f
+}
+
+/* carousel layout */
+
+.carousel {
+	margin: 0 40px;
+}
+
+.carousel-item {
+	padding: 10px;
+}
+
+.slick-prev:before,
+.slick-next:before
+{
+    font-size: 50px;
+    line-height: 1;
+    color: black;
+
+}
+
+.carousel .image {
+	width: 100%;
+	height: 300px;
+	background-size: cover;
+	background-position: 50% 50%, center;
+}
+
+.slick-slide {
+	padding: 10px;
+}
+
+/* course page */
+
+section.course-description {
+	float: left;
+	width: 2 / 3 * 100%;
+	background-color: #eee
+}
+
+aside.location {
+	float: left;
+	width: 1 / 3 * 100%;
+	background-color: #ccc;
+}
+
+.slick-prev
+{
+    left: -40px;
+}
+.slick-prev:before
+{
+    content: '<';
+}
+
+.slick-next
+{
+    right: -40px;
+}
+.slick-next:before
+{
+    content: '>';
+}
+
+/* footer */
+
+footer p {
+	text-align: center;
+	padding: 10px;
+}
+
+/* utilities */
+
+.clearfix:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+main > section:nth-of-type(odd) {
+	background-color: $lightGrey;
+}
+
+main > section:nth-of-type(even) {
+	background-color: $darkGrey;
+}
