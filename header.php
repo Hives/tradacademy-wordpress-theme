@@ -26,8 +26,8 @@
 		<!-- <link rel="icon" href="<?php echo get_template_directory_uri(); ?>/img/icons/favicon.ico" type="image/vnd.microsoft.icon"> -->
 		<!-- <link rel="stylesheet" href="<?php echo get_stylesheet_uri(); ?>" type="text/css" media="screen" /> -->
 		<?php /* wp_head(); */ ?>
+		<link rel='stylesheet' href='<?php echo get_stylesheet_directory_uri(); ?>/css/normalize.css' type='text/css' media='all' />
 		<link rel='stylesheet' href='<?php echo get_stylesheet_directory_uri(); ?>/style.css' type='text/css' media='all' />
-		<link rel='stylesheet' href='<?php echo get_stylesheet_directory_uri(); ?>/lib/bootstrap/css/bootstrap.min.css' type='text/css' media='all' />
 		<link rel='stylesheet' href='<?php echo get_stylesheet_directory_uri(); ?>/lib/slick/slick/slick.css' type='text/css' media='all' />
 		<link rel='stylesheet' href='<?php echo get_stylesheet_directory_uri(); ?>/lib/slick/slick/slick-theme.css' type='text/css' media='all' />
 		<link rel='stylesheet' href='<?php echo get_stylesheet_directory_uri(); ?>/css/wordpress-defaults.css' type='text/css' media='all' />
@@ -37,8 +37,8 @@
 
 	<?php if ( $environment == "test" ) { ?>
 		<div id="test-server-warning">
-			<div class="container">
-				<p>This is a test version of the site</p>
+			<div class= "container">
+				This is a test version of the site
 			</div>
 		</div>
 	<?php } ?>

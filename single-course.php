@@ -12,7 +12,7 @@ $new = 1; // triggers new header, <head> element etc.
 		$meta = get_post_meta( get_the_ID() );
 	?>
 
-	<article class="course container">
+	<article class="course container clearfix">
 		<header>
 			<h1><?php the_title(); ?></h1>
 			<div class="course-info">
@@ -20,10 +20,10 @@ $new = 1; // triggers new header, <head> element etc.
 			</div>
 			<?php print_social_media_buttons(); ?>
 		</header>
-		<section class="course-description col-md-8">
+		<section class="course-description">
 			<?php the_content(); ?>			
 		</section>
-		<aside class="location col-md-4">
+		<aside class="location">
 			<h3>Location</h3>
 			<div class="clearfix">
 				<?php print_course_location_map($meta); ?>
@@ -34,7 +34,9 @@ $new = 1; // triggers new header, <head> element etc.
 	<?php endwhile; else: ?>
 		<p><?php _e( 'Sorry, no posts matched your criteria.' ); ?></p>
 	<?php endif; ?>
+
+	<?php print_whats_coming_up_carousel(); ?>
 </main>
 
-<?php get_sidebar(); ?>
+<?php // get_sidebar(); ?>
 <?php get_footer(); ?>

@@ -1,5 +1,7 @@
 jQuery(document).ready(function($) {
 
+	// google map gubbins - disable this for now
+	/*
 	$('.google-map').each(function(){
 		var
 			$map = $(this), map, mapOptions, data, location, marker, $reset;
@@ -34,6 +36,7 @@ jQuery(document).ready(function($) {
 		});
 
 	});
+	*/
 
 	// $('.fb-container').each(function(){
 	// 	var
@@ -61,6 +64,9 @@ jQuery(document).ready(function($) {
 	// 	});
 
 	// });
+
+	// old carousel function - to be got rid of
+	/*
 
 	if ( $('.carousel-element').length > 1 ) {
 		var Carousel;
@@ -177,9 +183,11 @@ jQuery(document).ready(function($) {
 
 		// })();
 	}
+	*/
 
 
 	$(document).ready(function(){
+
 		$('.carousel').slick({
 			dots: true,
 			arrows: true,

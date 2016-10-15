@@ -3,6 +3,7 @@
 *   -----------------FUNCTIONS FOR TEMPLATES AND STUFF----------------------
 */
 
+// this is the old version, to be got rid of (i think)
 function print_menu () {
     global $wpdb;
 
@@ -118,37 +119,33 @@ function print_menu_2 () {
     $parents = array(0);
     ?>
 
-    <nav class="navbar navbar-default">
+    <nav class="navbar navbar-default clearfix">
       <div class="container container-fluid">
-        <!-- Brand and toggle get grouped for better mobile display -->
-        <div class="navbar-header">
           <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
             <span class="sr-only">Toggle navigation</span>
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <!-- <a class="navbar-brand" href="#">Home</a> -->
-        </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
-        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-          <ul class="nav navbar-nav">
+        <div class="collapse navbar-collapse" id="primary_nav_wrap">
+          <ul>
             <li class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">What's on <span class="caret"></span></a>
-              <ul class="dropdown-menu">
+              <a href="#" >What's on</a>
+              <ul>
                 <?php foreach ($courses as $course) { ?>
                     <li><a href="<?= get_permalink( $course->ID ); ?>"><?= $course->post_title; ?></a></li>
                 <?php } ?>
                 <li role="separator" class="divider"></li>
-                <li><a href="#">Historical courses</a></li>
+                <li><a href="#">Previous courses</a></li>
               </ul>
             </li>
             <li><a href="<?= get_permalink( get_option( 'page_for_posts' ) ); ?>">News</a></li>
             <li><a href="#">About</a></li>
             <li><a href="#">Contact</a></li>
           </ul>
-          <form class="navbar-form navbar-left">
+          <form class="navbar-form navbar-right">
             <div class="form-group">
               <input type="text" class="form-control" placeholder="Search">
             </div>
@@ -318,6 +315,88 @@ function get_courses_for_sidebar () {
     return $courses_expanded;
 
 }
+
+function print_whats_coming_up_carousel() { 
+
+    global $wpdb;
+
+    $courses = $wpdb->get_results("SELECT * FROM wp_posts WHERE post_type = 'course' AND post_status = 'publish'");
+
+    $coming_up = array();
+    $cutoff = new DateTime();
+
+    foreach ($courses as $course) {
+        $meta = get_post_meta( $course->ID );
+        $location = get_post( $meta['_cmb_location'][0] );
+        $location_meta = get_post_meta( $meta['_cmb_location'][0] );
+
+        if (isset($location_meta['_cmb_short_address']) && $location_meta['_cmb_short_address'][0] !== "") {
+            $short_address = $location_meta['_cmb_short_address'][0];
+        } elseif (isset($location->post_title) && $location->post_title !== "") {
+            $short_address = $location->post_title;
+        }
+
+        $thumbnail = wp_get_attachment_image_src( get_post_thumbnail_id($course->ID), 'medium');
+
+        $initial_date = intval($meta['_ta_initial_date'][0]);
+        // $start_time = intval($meta['_ta_start_time'][0]);
+        $duration = intval($meta['_ta_duration'][0]);
+        $num_weeks = intval($meta['_ta_num_weeks'][0]);
+
+        $date = new DateTime();
+        $date->setTimestamp($initial_date);
+
+
+        for ($i=0; $i < $num_weeks; $i++) {
+            $timestamp = $date->getTimestamp();
+
+            if ($date > $cutoff) {
+                $coming_up[] = array(
+                    "url" => get_permalink( $course->ID ),
+                    "title" => $course->post_title,
+                    "thumbnail" => $thumbnail,
+                    "timestamp" => $timestamp,
+                    "date" => date( 'D, d M, Y, g:ia', $timestamp ),
+                    "location"  => $short_address,
+                    "excerpt" => wp_trim_words( $course->post_content, 40 ),
+                );
+                break;
+            }
+
+            $date->add(new DateInterval("P1W"));
+        }
+
+    }
+    usort($coming_up, 'event_sorter');
+
+    ?>
+
+    <section id="coming-up">
+        <div class="container">
+            <h2 class="text-center">What's coming up?</h2>
+            <div class="carousel">
+
+            <?php foreach ($coming_up as $course) { ?>
+
+                <div class="col-md-4 col-sm-6 col-xs-12">
+                    <a href="<?= $course['url']; ?>">
+                        <h3><?= $course['title']; ?></h3>
+                    </a>
+                    <div class="image" style="background-image: url('<?= $course['thumbnail'][0]; ?>')"></div>
+                    <!-- <img src="<?= $course['thumbnail'][0]; ?>"> -->
+                    <div class="date"><?= $course['date']; ?></div>
+                    <div class="location"><?= $course['location']; ?></div>
+                    <div><?= $course['excerpt']; ?></div>
+                </div>
+
+            <?php } ?>              
+
+            </div>
+            <div class="button col-sm-12 col-md-4 col-md-offset-4 col">View all upcoming courses</div>
+        </div>
+    </section>
+
+<?php }
 
 function print_social_media_buttons() { ?>
     <div class="social-media-buttons">
