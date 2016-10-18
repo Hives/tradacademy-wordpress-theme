@@ -120,39 +120,43 @@ function print_menu_2 () {
     ?>
 
     <nav class="navbar navbar-default clearfix">
-      <div class="container container-fluid">
-          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
+        <div class="container container-fluid">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
 
-        <!-- Collect the nav links, forms, and other content for toggling -->
-        <div class="collapse navbar-collapse" id="primary_nav_wrap">
-          <ul>
-            <li class="dropdown">
-              <a href="#" >What's on</a>
-              <ul>
-                <?php foreach ($courses as $course) { ?>
-                    <li><a href="<?= get_permalink( $course->ID ); ?>"><?= $course->post_title; ?></a></li>
-                <?php } ?>
-                <li role="separator" class="divider"></li>
-                <li><a href="#">Previous courses</a></li>
-              </ul>
-            </li>
-            <li><a href="<?= get_permalink( get_option( 'page_for_posts' ) ); ?>">News</a></li>
-            <li><a href="#">About</a></li>
-            <li><a href="#">Contact</a></li>
-          </ul>
-          <form class="navbar-form navbar-right">
-            <div class="form-group">
-              <input type="text" class="form-control" placeholder="Search">
-            </div>
-            <button type="submit" class="btn btn-default">Submit</button>
-          </form>
-        </div><!-- /.navbar-collapse -->
-      </div><!-- /.container-fluid -->
+            <form class="navbar-form navbar-right">
+                <div class="form-group">
+                    <input type="text" class="form-control" placeholder="Search">
+                </div>
+                <button type="submit" class="btn btn-default">Submit</button>
+            </form>
+
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="primary_nav_wrap">
+                <ul>
+                    <li class="dropdown">
+                        <a href="#" >What's on</a>
+                        <ul>
+                        <?php foreach ($courses as $course) { ?>
+                            <li><a href="<?= get_permalink( $course->ID ); ?>"><?= $course->post_title; ?></a></li>
+                        <?php } ?>
+                            <li role="separator" class="divider"></li>
+                            <li><a href="#">Previous courses</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="<?= get_permalink( get_option( 'page_for_posts' ) ); ?>">News</a></li>
+                    <li><a href="#">About</a></li>
+                    <li><a href="#">Contact</a></li>
+                </ul>
+            </div><!-- /.navbar-collapse -->
+
+        
+        </div><!-- /.container-fluid -->
     </nav>
 
 <?php }
@@ -378,7 +382,7 @@ function print_whats_coming_up_carousel() {
 
             <?php foreach ($coming_up as $course) { ?>
 
-                <div class="col-md-4 col-sm-6 col-xs-12">
+                <div>
                     <a href="<?= $course['url']; ?>">
                         <h3><?= $course['title']; ?></h3>
                     </a>
@@ -392,7 +396,7 @@ function print_whats_coming_up_carousel() {
             <?php } ?>              
 
             </div>
-            <div class="button col-sm-12 col-md-4 col-md-offset-4 col">View all upcoming courses</div>
+            <div class="button">View all upcoming courses</div>
         </div>
     </section>
 

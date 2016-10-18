@@ -35,18 +35,25 @@ header {
 .navbar-toggle {
   display: none; }
 
-#primary_nav_wrap {
-  z-index: 999999999999999999; }
+#primary_nav_wrap ul {
+  list-style: none; }
+  #primary_nav_wrap ul a {
+    text-decoration: none; }
+#primary_nav_wrap li.divider {
+  height: 1px;
+  margin: 9px 0;
+  overflow: hidden;
+  background-color: #ccc; }
+
+@media screen and (min-width: 1025px) {
   #primary_nav_wrap ul {
-    list-style: none;
     position: relative;
     margin: 0;
     padding: 0; }
     #primary_nav_wrap ul a {
       display: block;
       color: #333;
-      padding: 10px 15px;
-      text-decoration: none; }
+      padding: 10px 15px; }
     #primary_nav_wrap ul li {
       float: left;
       margin: 0;
@@ -60,6 +67,7 @@ header {
     #primary_nav_wrap ul ul {
       display: none;
       position: absolute;
+      z-index: 1;
       left: 0;
       background: #eee;
       padding: 0; }
@@ -69,11 +77,54 @@ header {
         padding: 10px 15px; }
       #primary_nav_wrap ul ul ul {
         top: 0;
-        left: 100%; }
+        left: 100%; } }
+@media screen and (max-width: 1024px) {
+  .navbar-toggle {
+    float: left;
+    display: block;
+    width: 38px;
+    height: 30px;
+    background-color: white;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    margin-top: 6px;
+    margin-left: 15px; }
+    .navbar-toggle:hover {
+      background-color: #eee; }
+    .navbar-toggle:focus {
+      outline: 0; }
+    .navbar-toggle .icon-bar {
+      display: block;
+      width: 22px;
+      height: 2px;
+      border-radius: 1px;
+      background-color: #aaa; }
+    .navbar-toggle .icon-bar + .icon-bar {
+      margin-top: 4px; }
 
+  #primary_nav_wrap {
+    display: none;
+    clear: both;
+    background-color: #eee; }
+    #primary_nav_wrap ul {
+      padding: 0;
+      margin: 0;
+      border-top: thin solid #ccc;
+      border-bottom: thin solid #ccc; }
+    #primary_nav_wrap a {
+      padding-top: 4px;
+      padding-bottom: 4px;
+      color: black;
+      display: block; }
+      #primary_nav_wrap a:hover {
+        background-color: #ccc; }
+    #primary_nav_wrap ul ul > li a {
+      padding-left: 40px; }
+    #primary_nav_wrap li.divider {
+      margin: 0; } }
 .navbar-form {
   float: right;
-  padding: 6px 0 7px; }
+  padding: 6px 15px 7px; }
 
 .form-group {
   display: inline; }
@@ -141,6 +192,12 @@ footer p {
   padding: 10px; }
 
 /* utilities */
+button {
+  cursor: pointer; }
+
+.sr-only {
+  display: none; }
+
 .clearfix:after {
   content: "";
   display: table;

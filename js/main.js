@@ -213,6 +213,11 @@ jQuery(document).ready(function($) {
 				// instead of a settings object
 			]
 		})
+
+		$('.navbar-toggle').click(function(){
+			$('#primary_nav_wrap').slideToggle();
+		})
+
 	});
 
 });
