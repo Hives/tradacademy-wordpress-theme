@@ -22,6 +22,120 @@ function print_menu () {
     $page_hierarchy = get_page_hierarchy( $pages );
     $page_list = array();
     foreach ($page_hierarchy as $ID => $title) {
+        $page_list[] = array('ID' => $ID, 'title' => $pages_associative[$ID]->post_title);
+    }
+
+    $parents = array(0);
+    ?>
+
+    <nav class="navbar navbar-default clearfix">
+        <div class="container container-fluid">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+
+            <form class="navbar-form navbar-right">
+                <div class="form-group">
+                    <input type="text" class="form-control" placeholder="Search">
+                </div>
+                <button type="submit" class="btn btn-default">Submit</button>
+            </form>
+
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="primary_nav_wrap">
+                <ul>
+                <?php 
+                    while (count($page_list) > 0) {
+
+                        $page = array_shift($page_list);
+                        
+                        if (count($page_list) > 0) {
+                            $next_page_parent = $pages_associative[$page_list[0]['ID']]->post_parent;
+                        } else {
+                            $next_page_parent = "all gone";
+                        }
+                        echo "<li class='page_item page-item-" . $page['ID'] . "'>";
+                        echo "<a href='" . get_permalink( $pages_associative[$page['ID']] ) . "'>" . $pages_associative[$page['ID']]->post_title . "</a>";
+
+                        // special behaviour to create children of "what's on" page
+                        if ($page['ID'] == 7){
+                            echo "<ul>\r\n";
+                            $parents[] = $page['ID'];
+                            foreach ($courses as $course) {
+                                echo "<li class='course_item course-item-" . $course->ID . "'>";
+                                echo "<a href='" . get_permalink( $course->ID ) . "'>" . $course->post_title . "</a>";
+                                echo "</li>\r\n";
+                            }
+                            echo "<li role='separator' class='divider'></li>\r\n";
+                            if ($next_page_parent != end($parents)) {
+                                array_pop($parents);
+
+                                echo "</ul>\r\n";
+                            }
+                        }
+
+                        // special behaviour to create children of "tutors" page
+                        if ($page['ID'] == 11){
+                            echo "<ul>\r\n";
+                            $parents[] = $page['ID'];
+                            foreach ($tutors as $tutor) {
+                                echo "<li class='tutor_item tutor-item-" . $tutor->ID . "'>";
+                                echo "<a href='" . get_permalink( $tutor->ID ) . "'>" . $tutor->post_title . "</a>";
+                                echo "</li>\r\n";
+                            }
+                            if ($next_page_parent != end($parents)) {
+                                array_pop($parents);
+                                echo "</ul>\r\n";
+                            }
+                        }
+
+                        if (!in_array($next_page_parent, $parents)) {
+                            echo "<ul>\r\n";
+                            $parents[] = $next_page_parent;
+                        } else {
+                            echo "</li>\r\n";
+                            while ($next_page_parent != end($parents)) {
+                                array_pop($parents);
+                                echo "</ul>\r\n";
+                                echo "</li>\r\n";
+                            }
+                        }
+                    }
+                ?>
+                
+                </ul>
+            </div><!-- /.navbar-collapse -->
+
+        
+        </div><!-- /.container-fluid -->
+    </nav>
+
+<?php }
+
+
+// this is the old version, to be got rid of (i think)
+function print_menu_1 () {
+    global $wpdb;
+
+    $pages = $wpdb->get_results( "SELECT * FROM wp_posts WHERE post_type = 'page' AND post_status = 'publish' ORDER BY menu_order" );
+
+    $pages_associative = array();
+    foreach ($pages as $page) {
+        $pages_associative[$page->ID] = $page;
+    }
+
+    $courses = $wpdb->get_results( "SELECT * FROM wp_posts WHERE post_type = 'course' AND post_status = 'publish' ORDER BY menu_order" );
+    $courses = array_filter($courses, "get_current_courses");
+
+    $tutors = $wpdb->get_results( "SELECT * FROM wp_posts WHERE post_type = 'tutor' AND post_status = 'publish' ORDER BY menu_order" );
+
+    $page_hierarchy = get_page_hierarchy( $pages );
+    $page_list = array();
+    foreach ($page_hierarchy as $ID => $title) {
         // dump();
         $page_list[] = array('ID' => $ID, 'title' => $pages_associative[$ID]->post_title);
     }
@@ -91,7 +205,7 @@ function print_menu () {
 
 <?php }
 
-
+// this is where i started rewriting it
 function print_menu_2 () {
     global $wpdb;
 

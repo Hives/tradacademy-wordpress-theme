@@ -35,7 +35,6 @@ $new = 1; // triggers new header, <head> element etc.
 		<p><?php _e( 'Sorry, no posts matched your criteria.' ); ?></p>
 	<?php endif; ?>
 
-	<?php print_whats_coming_up_carousel(); ?>
 </main>
 
 <?php // get_sidebar(); ?>

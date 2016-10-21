@@ -11,7 +11,11 @@ $lightGrey: #eee;
 $darkGrey: #ccc;
 $darkerGrey: #aaa;
 
-/* flexi layout styles */
+/* ?!?! */
+
+* {
+	box-sizing: border-box;
+}
 
 html {
 	font-size: 16pt;
@@ -110,10 +114,10 @@ header {
 
 			ul {
 				display:none;
-				position:absolute;
+				position: absolute;
 				z-index: 1;
 				// top:100%;
-				left:0;
+				// left:0;
 				background:$lightGrey;
 				padding:0;
 
@@ -294,6 +298,12 @@ aside.location {
     content: '>';
 }
 
+/* news page */
+
+article.blog-post {
+	width: 2 / 3 * 100%;	
+}
+
 /* footer */
 
 footer p {
@@ -322,5 +332,13 @@ main > section:nth-of-type(odd) {
 }
 
 main > section:nth-of-type(even) {
+	background-color: $darkGrey;
+}
+
+main > div > article:nth-of-type(odd) {
+	background-color: $lightGrey;
+}
+
+main > div > article:nth-of-type(even) {
 	background-color: $darkGrey;
 }

@@ -53,7 +53,7 @@
 			<img id="mascot" src="<?php echo get_template_directory_uri(); ?>/img/cat.png" alt="A cat playing a violin like a cello"/>
 		</header><!-- #masthead -->
 
-		<?php print_menu_2(); ?>
+		<?php print_menu(); ?>
 
 <?php
 

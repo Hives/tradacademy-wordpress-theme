@@ -5,7 +5,10 @@ Author: Pablo
 Version: 0.6
 */
 /* colours */
-/* flexi layout styles */
+/* ?!?! */
+* {
+  box-sizing: border-box; }
+
 html {
   font-size: 16pt; }
 
@@ -68,7 +71,6 @@ header {
       display: none;
       position: absolute;
       z-index: 1;
-      left: 0;
       background: #eee;
       padding: 0; }
       #primary_nav_wrap ul ul li {
@@ -186,6 +188,10 @@ aside.location {
 .slick-next:before {
   content: '>'; }
 
+/* news page */
+article.blog-post {
+  width: 66.66667%; }
+
 /* footer */
 footer p {
   text-align: center;
@@ -207,6 +213,12 @@ main > section:nth-of-type(odd) {
   background-color: #eee; }
 
 main > section:nth-of-type(even) {
+  background-color: #ccc; }
+
+main > div > article:nth-of-type(odd) {
+  background-color: #eee; }
+
+main > div > article:nth-of-type(even) {
   background-color: #ccc; }
 
 /*# sourceMappingURL=style.css.map */
