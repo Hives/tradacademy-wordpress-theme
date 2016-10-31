@@ -52,42 +52,44 @@ header {
   font-size: 70%; }
 
 @media screen and (min-width: 1025px) {
-  #primary_nav_wrap ul {
-    position: relative;
-    margin: 0;
-    padding: 0; }
-    #primary_nav_wrap ul a {
-      display: block;
-      color: #333;
-      padding: 10px 15px; }
-    #primary_nav_wrap ul li {
-      float: left;
+  #primary_nav_wrap {
+    display: block !important; }
+    #primary_nav_wrap ul {
+      position: relative;
       margin: 0;
       padding: 0; }
-      #primary_nav_wrap ul li.current-menu-item {
-        background: #ddd; }
-      #primary_nav_wrap ul li:hover {
-        background: #ccc; }
-        #primary_nav_wrap ul li:hover > ul {
-          display: block; }
-    #primary_nav_wrap ul ul {
-      display: none;
-      position: absolute;
-      z-index: 1;
-      background: #eee;
-      padding: 0;
-      white-space: nowrap; }
-      #primary_nav_wrap ul ul li {
-        position: relative;
-        float: none; }
-      #primary_nav_wrap ul ul a {
+      #primary_nav_wrap ul a {
+        display: block;
+        color: #333;
         padding: 10px 15px; }
-      #primary_nav_wrap ul ul ul {
-        top: 0;
-        left: 100%; }
-      #primary_nav_wrap ul ul .arrow {
-        float: right;
-        margin-left: 12px; } }
+      #primary_nav_wrap ul li {
+        float: left;
+        margin: 0;
+        padding: 0; }
+        #primary_nav_wrap ul li.current-menu-item {
+          background: #ddd; }
+        #primary_nav_wrap ul li:hover {
+          background: #ccc; }
+          #primary_nav_wrap ul li:hover > ul {
+            display: block; }
+      #primary_nav_wrap ul ul {
+        display: none;
+        position: absolute;
+        z-index: 1;
+        background: #eee;
+        padding: 0;
+        white-space: nowrap; }
+        #primary_nav_wrap ul ul li {
+          position: relative;
+          float: none; }
+        #primary_nav_wrap ul ul a {
+          padding: 10px 15px; }
+        #primary_nav_wrap ul ul ul {
+          top: 0;
+          left: 100%; }
+        #primary_nav_wrap ul ul .arrow {
+          float: right;
+          margin-left: 12px; } }
 @media screen and (max-width: 1024px) {
   .navbar-toggle {
     float: left;
@@ -179,12 +181,12 @@ header {
   padding: 10px; }
 
 /* course page */
-section.course-description {
+.two-col-left {
   float: left;
   width: 66.66667%;
   background-color: #eee; }
 
-aside.location {
+.two-col-right {
   float: left;
   width: 33.33333%;
   background-color: #ccc; }

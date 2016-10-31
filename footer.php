@@ -14,7 +14,7 @@
               &copy; Trad Academy 2016
             </p>
         </footer>
-        <?php // wp_footer(); ?>
+        <?php wp_footer(); ?>
 
         <script src="<?php echo get_stylesheet_directory_uri(); ?>/js/vendor/jquery-3.1.1.min.js"></script>
         <script src="<?php echo get_stylesheet_directory_uri(); ?>/lib/bootstrap/js/bootstrap.min.js"></script>

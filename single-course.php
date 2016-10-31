@@ -20,10 +20,10 @@ $new = 1; // triggers new header, <head> element etc.
 			</div>
 			<?php print_social_media_buttons(); ?>
 		</header>
-		<section class="course-description">
+		<section class="course-description two-col-left">
 			<?php the_content(); ?>			
 		</section>
-		<aside class="location">
+		<aside class="location two-col-right">
 			<h3>Location</h3>
 			<div class="clearfix">
 				<?php print_course_location_map($meta); ?>

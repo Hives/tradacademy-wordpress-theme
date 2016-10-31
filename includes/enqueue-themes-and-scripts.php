@@ -3,46 +3,81 @@
 *   -----------------THEME STYLES AND JS----------------------
 */
 
+
 function theme_styles() {
+
     wp_enqueue_style(
         "html5-boilerplate-normalize",
         $src = get_template_directory_uri() . '/css/normalize.css',
-        $deps = array(),
-        $ver = null,
         $media = 'all'
     );
-    wp_enqueue_style(
-        "html5-boilerplate-main",
-        $src = get_template_directory_uri() . '/css/main.css',
-        $deps = array("html5-boilerplate-normalize"),
-        $ver = null,
-        $media = 'all'
-    );
-    /*
     wp_enqueue_style(
         "main",
         $src = get_template_directory_uri() . '/style.css',
-        $deps = array("html5-boilerplate-main"),
-        $ver = null,
-        $media = 'all'
-    );
-    */
-    wp_enqueue_style(
-        "old",
-        $src = get_template_directory_uri() . '/style-old.css',
-        $deps = array("html5-boilerplate-main"),
-        $ver = null,
         $media = 'all'
     );
     wp_enqueue_style(
         "wp-defaults",
         $src = get_template_directory_uri() . '/css/wordpress-defaults.css',
-        $deps = array(),
-        $ver = null,
         $media = 'all'
     );
+    wp_enqueue_style(
+        "slick",
+        $src = get_template_directory_uri() . '/lib/slick/slick/slick.css',
+        $media = 'all'
+    );
+    wp_enqueue_style(
+        "slick theme",
+        $src = get_template_directory_uri() . '/lib/slick/slick/slick-theme.css',
+        $media = 'all'
+    );
+
 }
 add_action('wp_enqueue_scripts', 'theme_styles');
+
+
+/* Old Styles */
+
+// function theme_styles() {
+//     wp_enqueue_style(
+//         "html5-boilerplate-normalize",
+//         $src = get_template_directory_uri() . '/css/normalize.css',
+//         $deps = array(),
+//         $ver = null,
+//         $media = 'all'
+//     );
+//     wp_enqueue_style(
+//         "html5-boilerplate-main",
+//         $src = get_template_directory_uri() . '/css/main.css',
+//         $deps = array("html5-boilerplate-normalize"),
+//         $ver = null,
+//         $media = 'all'
+//     );
+    
+//     wp_enqueue_style(
+//         "main",
+//         $src = get_template_directory_uri() . '/style.css',
+//         $deps = array("html5-boilerplate-main"),
+//         $ver = null,
+//         $media = 'all'
+//     );
+    
+//     wp_enqueue_style(
+//         "old",
+//         $src = get_template_directory_uri() . '/style-old.css',
+//         $deps = array("html5-boilerplate-main"),
+//         $ver = null,
+//         $media = 'all'
+//     );
+//     wp_enqueue_style(
+//         "wp-defaults",
+//         $src = get_template_directory_uri() . '/css/wordpress-defaults.css',
+//         $deps = array(),
+//         $ver = null,
+//         $media = 'all'
+//     );
+// }
+// add_action('wp_enqueue_scripts', 'theme_styles');
 
 function theme_scripts() {
     wp_enqueue_script(

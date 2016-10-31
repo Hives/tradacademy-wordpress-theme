@@ -1,4 +1,4 @@
-<aside id="sidebar">
+<aside id="sidebar" class="two-col-right">
 	<h2>Sidebar</h2>
 	<?php
 		if ( dynamic_sidebar('home_right_1') ) :
