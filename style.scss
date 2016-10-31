@@ -73,6 +73,11 @@ header {
 	    overflow: hidden;
 	    background-color: $darkGrey;
 	}
+
+	a .course-dates {
+		font-style: italic;
+		font-size: 70%;
+	}
 	
 }
 
@@ -120,10 +125,13 @@ header {
 				// left:0;
 				background:$lightGrey;
 				padding:0;
+				white-space: nowrap;
 
 				li {
+					position: relative;
 					float:none;
 					// width:200px;
+
 				}
 
 				a {
@@ -134,6 +142,11 @@ header {
 				ul {
 					top:0;
 					left:100%;
+				}
+
+				.arrow {
+					float: right;
+					margin-left: 12px;
 				}
 			}
 
@@ -192,7 +205,7 @@ header {
 		a {
 			padding-top: 4px;
 			padding-bottom: 4px;
-			color: black;
+			color: #444;
 			display: block;
 			&:hover {
 				background-color: $darkGrey;
@@ -204,8 +217,16 @@ header {
 			padding-left: 40px;
 		}
 
+		ul ul ul > li a {
+			padding-left: 80px;
+		}
+
 		li.divider {
 			margin: 0;
+		}
+
+		.arrow {
+			display: none;
 		}
 
 	}
@@ -215,6 +236,7 @@ header {
 .navbar-form {
 	float: right;
 	padding: 6px 15px 7px;
+	height: 44px;
 }
 
 .form-group	{
@@ -312,6 +334,10 @@ footer p {
 }
 
 /* utilities */
+
+.dumped {
+	font-size: 10pt;
+}
 
 button {
 	cursor: pointer;

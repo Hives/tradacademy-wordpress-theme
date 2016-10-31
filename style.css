@@ -47,6 +47,9 @@ header {
   margin: 9px 0;
   overflow: hidden;
   background-color: #ccc; }
+#primary_nav_wrap a .course-dates {
+  font-style: italic;
+  font-size: 70%; }
 
 @media screen and (min-width: 1025px) {
   #primary_nav_wrap ul {
@@ -72,14 +75,19 @@ header {
       position: absolute;
       z-index: 1;
       background: #eee;
-      padding: 0; }
+      padding: 0;
+      white-space: nowrap; }
       #primary_nav_wrap ul ul li {
+        position: relative;
         float: none; }
       #primary_nav_wrap ul ul a {
         padding: 10px 15px; }
       #primary_nav_wrap ul ul ul {
         top: 0;
-        left: 100%; } }
+        left: 100%; }
+      #primary_nav_wrap ul ul .arrow {
+        float: right;
+        margin-left: 12px; } }
 @media screen and (max-width: 1024px) {
   .navbar-toggle {
     float: left;
@@ -116,17 +124,22 @@ header {
     #primary_nav_wrap a {
       padding-top: 4px;
       padding-bottom: 4px;
-      color: black;
+      color: #444;
       display: block; }
       #primary_nav_wrap a:hover {
         background-color: #ccc; }
     #primary_nav_wrap ul ul > li a {
       padding-left: 40px; }
+    #primary_nav_wrap ul ul ul > li a {
+      padding-left: 80px; }
     #primary_nav_wrap li.divider {
-      margin: 0; } }
+      margin: 0; }
+    #primary_nav_wrap .arrow {
+      display: none; } }
 .navbar-form {
   float: right;
-  padding: 6px 15px 7px; }
+  padding: 6px 15px 7px;
+  height: 44px; }
 
 .form-group {
   display: inline; }
@@ -198,6 +211,9 @@ footer p {
   padding: 10px; }
 
 /* utilities */
+.dumped {
+  font-size: 10pt; }
+
 button {
   cursor: pointer; }
 

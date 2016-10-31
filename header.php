@@ -124,6 +124,6 @@
 		<nav id="site-navigation" class="main-navigation" role="navigation">
 			<h2>Navigation</h2>
 			<?php // wp_nav_menu( array( 'theme_location' => 'primary', 'menu_class' => 'nav-menu' ) ); ?>
-			<?php print_menu( ); ?>
+			<?php print_menu_1( ); ?>
 		</nav>
 <?php } ?>
