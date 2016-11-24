@@ -95,6 +95,7 @@ function create_new_post_types() {
     register_post_type('tutor', $args_tutor);
 
     // carousel_page
+    /*
     $labels_carousel_page = array(
         'name' => _x('Carousel Pages', 'post type general name'),
         'singular_name' => _x('Carousel Page', 'post type singular name'),
@@ -121,5 +122,6 @@ function create_new_post_types() {
         'supports' => array('title','editor', 'thumbnail')
     );
     register_post_type('carousel_page', $args_carousel_page);
+    */
 
 }

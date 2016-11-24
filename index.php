@@ -7,9 +7,9 @@ $new = 1; // triggers new header, <head> element etc.
 <?php get_header(); ?>
 
 <main>
-	<div class="container">
+	<div class="vertical-section">
 		<?php if ( have_posts() ) : while ( have_posts() ) : the_post(); ?>
-			<article class="blog-post clearfix">
+			<article class="two-col-main clearfix">
 				<header>
 					<?php if ( is_single() ): ?>
 						<h1><?php the_title(); ?></h1>

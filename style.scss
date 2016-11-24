@@ -11,22 +11,33 @@ $lightGrey: #eee;
 $darkGrey: #ccc;
 $darkerGrey: #aaa;
 
+/* breakpoints */
+$big: 1024px;
+$medium: 768px;
+$small: 480px;
+
 /* ?!?! */
 
 * {
 	box-sizing: border-box;
 }
 
+//
+//  BASIC TYPOGRAPHY
+//
+
 html {
 	font-size: 16pt;
+	line-height: 1.3em;
 }
 
-.container {
-	max-width: 1170px;
-	margin: 0 auto;
+header {
+	text-align: center;
 }
 
-/* test server warning */
+//
+//  TEST SERVER WARNING
+//
 
 #test-server-warning {
 	background-image: url(img/stripe.png);
@@ -40,15 +51,33 @@ html {
 	}
 }
 
-/* masthead */
+//
+//  MASTHEAD
+//
 
-header {
+#masthead {
+	padding-top: 40px;
+	padding-bottom: 40px;
 	text-align: center;
 }
 
-/* nav bar */
+#title-and-description {
+	background-image: url(img/trad-academy-logo-900.png);
+	height: 159px;
+	width: 900px;
+	float: left;
+}
+
+#mascot {
+	height: 159px;
+}
+
+//
+//  NAV BAR
+//
 
 .navbar {
+	line-height: 1em;
 	background-color: $lightGrey;
 	// padding: 10px;
 }
@@ -82,7 +111,12 @@ header {
 }
 
 
-@media screen and (min-width: 1025px) {
+@media screen and (min-width: $big) {
+
+	nav .container {
+		max-width: 1170px;
+		margin: 0 auto;		
+	}
 
 	// copied from https://codepen.io/philhoyt/pen/ujHzd
 	#primary_nav_wrap  {
@@ -158,7 +192,7 @@ header {
 
 } // end media query
 
-@media screen and (max-width: 1024px) {
+@media screen and (max-width: $big) {
 
 	.navbar-toggle {
 		float: left;
@@ -245,6 +279,62 @@ header {
 	display: inline;
 }
 
+//
+//  TWO COLUMN LAYOUT
+//
+
+.vertical-section {
+	overflow: hidden;
+	max-width: 1170px;
+	margin: 0 auto;
+}
+
+.two-col-main {
+	// desktops:
+	@media only screen and (min-width: $big) {	
+		float: left;
+		width: 2 / 3 * 100%;
+	}
+
+	// tablets and smaller:
+	@media only screen and (max-width: $big) {	
+		float: left;
+		width: 100%;
+	}
+
+	background-color: #eee;
+
+	min-height: 1em; // to stop it collapsing when no content. probably never necessary...
+}
+
+.two-col-side {
+	// $big and bigger:
+	@media only screen and (min-width: $big) {	
+		float: right;
+		width: 1 / 3 * 100%;
+	}
+
+	// tablets and smaller:
+	@media only screen and (max-width: $big) {	
+		float: right;
+		width: 100%;
+	}
+
+	background-color: #ccc;
+
+	min-height: 1em; // to stop it collapsing when no content. probably never necessary...
+}
+
+//
+//  SINGLE COURSE
+//
+
+.single-course .course-description img {
+	max-width: 100%;
+	height: auto;
+}
+
+
 /* coming up carousel */
 
 #coming-up .date, #coming-up .location {
@@ -290,20 +380,6 @@ header {
 	padding: 10px;
 }
 
-/* course page */
-
-.two-col-left {
-	float: left;
-	width: 2 / 3 * 100%;
-	background-color: #eee
-}
-
-.two-col-right {
-	float: left;
-	width: 1 / 3 * 100%;
-	background-color: #ccc;
-}
-
 .slick-prev
 {
     left: -40px;
@@ -320,12 +396,6 @@ header {
 .slick-next:before
 {
     content: '>';
-}
-
-/* news page */
-
-article.blog-post {
-	width: 2 / 3 * 100%;	
 }
 
 /* footer */
@@ -345,8 +415,12 @@ button {
 	cursor: pointer;
 }
 
-.sr-only {
-	display: none;
+.visually-hidden { 
+  position: absolute; 
+  overflow: hidden; 
+  clip: rect(0 0 0 0); 
+  height: 1px; width: 1px; 
+  margin: -1px; padding: 0; border: 0; 
 }
 
 .clearfix:after {
@@ -354,6 +428,8 @@ button {
   display: table;
   clear: both;
 }
+
+
 
 main > section:nth-of-type(odd) {
 	background-color: $lightGrey;

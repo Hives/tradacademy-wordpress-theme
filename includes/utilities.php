@@ -78,7 +78,7 @@ function print_menu_recursive($menu_tree, $level = 0)
                 echo "<a href='" . $item['permalink'] . "'>";
                 echo $item['title'];
                 echo "<br>";
-                echo "<span class='course-dates'>Course dates</span>";
+                echo "<span class='course-dates'>" . $item['dates'] . "</span>";
                 echo "</a>\n";
 
                 echo str_repeat("   ", $indent + 1);

@@ -49,9 +49,31 @@ function print_menu () {
         // if ID = 7 then add the courses into the list
         if ($ID == 7) {
             foreach ($courses as $course_ID => $course) {
+                $meta = get_post_meta( $course->ID, $key = '', $single = false );
+                $initial_date = $meta['_ta_initial_date'][0];
+                $num_weeks = $meta['_ta_num_weeks'][0];
+                $final_date = strtotime("+" . ($num_weeks - 1) . " weeks", $initial_date);
+
+                $m1 = date('F', $initial_date);
+                $y1 = date('Y', $initial_date);
+                $m2 = date('F', $final_date);
+                $y2 = date('Y', $final_date);
+
+                $date_text = $m1;
+                if ($y1 != $y2) {
+                    $date_text = $date_text . " " . $y1;
+                }
+                if ($m1 != $m2 || $y1 != $y2) {
+                    $date_text = $date_text . " - " . $m2;
+                }
+                $date_text = $date_text . " " . $y2;
+
+                // $date_text = $m1 . " " . $y1 . " - " . $m2 . " " .$y2;
+
                 $menu_list[] = array(
                     'ID' => $course_ID,
                     'title' => $course->post_title,
+                    'dates' => $date_text,
                     'parent' => 7,
                     'permalink' => get_permalink( $course_ID ),
                     'type' => 'course'
@@ -71,7 +93,7 @@ function print_menu () {
             }
         }
 
-        // if ID = 11 then add the courses into the list
+        // if ID = 11 then add the tutors into the list
         if ($ID == 11) {
             foreach ($tutors as $tutor_ID => $tutor) {
                 $menu_list[] = array(
@@ -103,9 +125,9 @@ function print_menu () {
     ?>
 
     <nav class="navbar navbar-default clearfix">
-        <div class="container container-fluid">
+        <div class="container">
             <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-                <span class="sr-only">Toggle navigation</span>
+                <span class="visually-hidden">Toggle navigation</span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
@@ -126,8 +148,7 @@ function print_menu () {
 
             </div><!-- /.navbar-collapse -->
 
-        
-        </div><!-- /.container-fluid -->
+        </div>
     </nav>
 
 <?php }
@@ -435,8 +456,10 @@ function print_whats_coming_up_carousel() {
     ?>
 
     <section id="coming-up">
-        <div class="container">
-            <h2 class="text-center">What's coming up?</h2>
+        <div class="vertical-section">
+            <header>
+                <h2 class="text-center">What's coming up?</h2>
+            </header>
             <div class="carousel">
 
             <?php foreach ($coming_up as $course) { ?>
@@ -485,6 +508,7 @@ function print_social_media_buttons() { ?>
     </script>
 <?php }
 
+/*
 function print_carousel() {
     global $wpdb;
 
@@ -522,3 +546,4 @@ function print_carousel() {
     </div>
 
 <?php }
+*/

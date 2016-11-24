@@ -1,1 +1,24 @@
-if you open and close the hamburger menu in the ipad layout and then increase the width of the screen to the full layout, then the menu doesn't show.
+- navbar html has got a load of extra classes and stuff from bootstrap that are probably unnecessary
+
+- carousel pages - delete the code?
+  from define-custom-post-types.phpm functions-used-in-templates and basic-config.php
+
+- order of courses in the "what's on" dropdown? what order are they in?
+
+Templates:
+ - footer.php (the footer)
+ - header.php (the header)
+ - sidebar.php (the sidebar)
+
+ - front-page.php (the front page)
+
+ - index.php (list of blog posts, and single blog posts)
+
+ - page.php (standard page template)
+
+ - current-courses.php (list of upcoming courses)
+ - single-course.php (a single course)
+ - past-courses.php (list of old courses)
+
+ - single-tutor.php (a single tutor)
+ - tutors.php (displays all the tutors)

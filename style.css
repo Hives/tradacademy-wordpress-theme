@@ -5,18 +5,18 @@ Author: Pablo
 Version: 0.6
 */
 /* colours */
+/* breakpoints */
 /* ?!?! */
 * {
   box-sizing: border-box; }
 
 html {
-  font-size: 16pt; }
+  font-size: 16pt;
+  line-height: 1.3em; }
 
-.container {
-  max-width: 1170px;
-  margin: 0 auto; }
+header {
+  text-align: center; }
 
-/* test server warning */
 #test-server-warning {
   background-image: url(img/stripe.png);
   background-color: yellow;
@@ -27,12 +27,22 @@ html {
     font-weight: bold;
     font-size: 150%; }
 
-/* masthead */
-header {
+#masthead {
+  padding-top: 40px;
+  padding-bottom: 40px;
   text-align: center; }
 
-/* nav bar */
+#title-and-description {
+  background-image: url(img/trad-academy-logo-900.png);
+  height: 159px;
+  width: 900px;
+  float: left; }
+
+#mascot {
+  height: 159px; }
+
 .navbar {
+  line-height: 1em;
   background-color: #eee; }
 
 .navbar-toggle {
@@ -51,7 +61,11 @@ header {
   font-style: italic;
   font-size: 70%; }
 
-@media screen and (min-width: 1025px) {
+@media screen and (min-width: 1024px) {
+  nav .container {
+    max-width: 1170px;
+    margin: 0 auto; }
+
   #primary_nav_wrap {
     display: block !important; }
     #primary_nav_wrap ul {
@@ -146,6 +160,39 @@ header {
 .form-group {
   display: inline; }
 
+.vertical-section {
+  overflow: hidden;
+  max-width: 1170px;
+  margin: 0 auto; }
+
+.two-col-main {
+  background-color: #eee;
+  min-height: 1em; }
+  @media only screen and (min-width: 1024px) {
+    .two-col-main {
+      float: left;
+      width: 66.66667%; } }
+  @media only screen and (max-width: 1024px) {
+    .two-col-main {
+      float: left;
+      width: 100%; } }
+
+.two-col-side {
+  background-color: #ccc;
+  min-height: 1em; }
+  @media only screen and (min-width: 1024px) {
+    .two-col-side {
+      float: right;
+      width: 33.33333%; } }
+  @media only screen and (max-width: 1024px) {
+    .two-col-side {
+      float: right;
+      width: 100%; } }
+
+.single-course .course-description img {
+  max-width: 100%;
+  height: auto; }
+
 /* coming up carousel */
 #coming-up .date, #coming-up .location {
   font-style: italic; }
@@ -180,17 +227,6 @@ header {
 .slick-slide {
   padding: 10px; }
 
-/* course page */
-.two-col-left {
-  float: left;
-  width: 66.66667%;
-  background-color: #eee; }
-
-.two-col-right {
-  float: left;
-  width: 33.33333%;
-  background-color: #ccc; }
-
 .slick-prev {
   left: -40px; }
 
@@ -202,10 +238,6 @@ header {
 
 .slick-next:before {
   content: '>'; }
-
-/* news page */
-article.blog-post {
-  width: 66.66667%; }
 
 /* footer */
 footer p {
@@ -219,8 +251,15 @@ footer p {
 button {
   cursor: pointer; }
 
-.sr-only {
-  display: none; }
+.visually-hidden {
+  position: absolute;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  height: 1px;
+  width: 1px;
+  margin: -1px;
+  padding: 0;
+  border: 0; }
 
 .clearfix:after {
   content: "";

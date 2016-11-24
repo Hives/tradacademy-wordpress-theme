@@ -9,11 +9,33 @@ date_default_timezone_set('Europe/London');
 
 // set image sizes
 add_theme_support( 'post-thumbnails' );
-add_image_size( "carousel-full", 1000, 350, true );
-update_option('medium_size_w', 326);
+add_image_size( "small", 480, 480, false );
+// update_option('medium_size_w', 326);
+// update_option('small_size_w', 480);
+// update_option('small_size_w', 0);
+update_option('medium_size_w', 780);
 update_option('medium_size_h', 0);
-update_option('large_size_w', 676);
+update_option('large_size_w', 1024);
 update_option('large_size_h', 0);
+
+/**
+ * Add custom image sizes attribute to enhance responsive image functionality
+ * for content images
+ *
+ * Good explanation here:
+ * https://viastudio.com/optimizing-your-theme-for-wordpress-4-4s-responsive-images/
+ *
+ */
+function tradacademy_content_image_sizes_attr( $sizes, $size ) {
+    $width = $size[0];
+
+    return '(min-width: 1170px) 780px, (min-width: 1025px) 67vw, 100vw';
+
+    // return '(max-width: 1024px) 100vw, (max-width: 1170px) 67vw, 780px';
+
+}
+add_filter( 'wp_calculate_image_sizes', 'tradacademy_content_image_sizes_attr', 10 , 2 );
+
 
 // stick this in here...
 // http://wordpress.org/support/topic/10px-added-to-width-in-image-captions

@@ -14,9 +14,9 @@ $new = 1; // triggers new header, <head> element etc.
 	<?php /* Commented this out, but could be useful for allowing editable content on front page? */ ?>
 	<?php if ( have_posts() ) : while ( have_posts() ) : the_post(); ?>
 		<section id="homepage-content">
-			<article class="clearfix container">
-				<header class="visuallyhidden">
-					<? // dont show the title on the homepage ?>
+			<article class="clearfix vertical-section front-page">
+				<? // dont show the title on the homepage ?>
+				<header class="visually-hidden">
 					<h1><a href="<?php the_permalink(); ?>" title="<?php the_title_attribute(); ?>"><?php the_title(); ?></a></h1>
 				</header>
 				<?php the_content(); ?>
