@@ -24,7 +24,12 @@
 	<?php if ( $environment == "test" ) { ?>
 		<div id="test-server-warning">
 			<div class= "vertical-section">
-				This is a test version of the site
+				<p class="warning">
+					This is a test version of the site
+				</p>
+				<p>
+					Visit <a href="<?php echo get_stylesheet_directory_uri(); ?>/test-dump-pages/test-wrapper.php">test dump page</a>	
+				</p>
 			</div>
 		</div>
 	<?php } ?>

@@ -5,6 +5,8 @@
 
 - order of courses in the "what's on" dropdown? what order are they in?
 
+- "upcoming courses" in sidebar ~ sort them in a good order
+
 Templates:
  - footer.php (the footer)
  - header.php (the header)

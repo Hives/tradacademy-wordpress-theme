@@ -48,39 +48,45 @@ class TA_Calendar extends WP_Widget {
         extract( $args );
         $title = apply_filters( 'widget_title', $instance['title'] );
 
-        $courses = get_courses_for_sidebar();
-        $courses_filtered = array();
-        $now = time();
-        $then = strtotime('+2 weeks');
+        // $courses = get_courses_for_sidebar();
+        // $courses_filtered = array();
+        // $now = time();
+        // $then = strtotime('+2 weeks');
 
-        foreach ($courses as $course) {
-            if ($course['timestamp'] > $now && $course['timestamp'] < $then) {
-                $courses_filtered[] = $course;
-            }
-        }
+        // foreach ($courses as $course) {
+        //     if ($course['timestamp'] > $now && $course['timestamp'] < $then) {
+        //         $courses_filtered[] = $course;
+        //     }
+        // }
 
-        if (count($courses_filtered) !== 0) {
+        $courses = get_forthcoming_courses_and_metadata();
+
+        if (count($courses) !== 0) {
 
             echo $before_widget;
+
             if ( ! empty( $title ) )
                 echo $before_title . $title . $after_title;
 
-                foreach ($courses_filtered as $course) {
+            foreach ($courses as $course) {
+                $course_title = $course->post_title;
+                $course_url = get_permalink( $course->ID );
+                $course_next_event_date = get_next_event_date( $course );
+                $thumbnail = get_the_post_thumbnail( $course->ID, array(390,0) );
 
-                    $time = strtotime($course['date'] . " " . $course['start']);
-                    ?>
-                    <section class="course-summary">
-                        <h4><a href="<?php echo $course['url']; ?>"><?php echo $course['course']->post_title; ?></a></h4>
-                        <div>
-                            <?php echo date( 'D, d M, g:ia', $course['timestamp']); ?>
-                            <?php if ($course['short address']) { ?>
-                                <br /><?php echo $course['short address']; ?>
-                            <?php } ?>
-                        </div>
-                    </section>
+                $location = get_short_address( $course->meta['_cmb_location'][0] );
+                ?>
 
-                <?php }
-                echo $after_widget;
+                <section class="course-summary">
+                    <h4><a href="<?php echo $course_url; ?>"><?php echo $course_title; ?></a></h4>
+                    <p>
+                        <?= $course_next_event_date->format('jS F, g:ia'); ?>, at <?= $location; ?>
+                    </p>
+                    <?= $thumbnail; ?>
+                </section>
+
+            <?php }
+            echo $after_widget;
         }
     }
 

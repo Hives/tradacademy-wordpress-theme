@@ -154,94 +154,6 @@ function print_menu () {
 <?php }
 
 
-// this is the old version, to be got rid of
-function print_menu_1 () {
-    global $wpdb;
-
-    $pages = $wpdb->get_results( "SELECT * FROM wp_posts WHERE post_type = 'page' AND post_status = 'publish' ORDER BY menu_order" );
-
-    $pages_associative = array();
-    foreach ($pages as $page) {
-        $pages_associative[$page->ID] = $page;
-    }
-
-    $courses = $wpdb->get_results( "SELECT * FROM wp_posts WHERE post_type = 'course' AND post_status = 'publish' ORDER BY menu_order" );
-    $courses = array_filter($courses, "get_current_courses");
-
-    $tutors = $wpdb->get_results( "SELECT * FROM wp_posts WHERE post_type = 'tutor' AND post_status = 'publish' ORDER BY menu_order" );
-
-    $page_hierarchy = get_page_hierarchy( $pages );
-    $page_list = array();
-    foreach ($page_hierarchy as $ID => $title) {
-        // dump();
-        $page_list[] = array('ID' => $ID, 'title' => $pages_associative[$ID]->post_title);
-    }
-
-    $parents = array(0);
-
-    echo "<ul class='menu'>";
-    while (count($page_list) > 0) {
-        // dump($page_list);
-        // dump(count($page_list));
-        // dump("poo");
-
-        $page = array_shift($page_list);
-        
-        if (count($page_list) > 0) {
-            $next_page_parent = $pages_associative[$page_list[0]['ID']]->post_parent;
-        } else {
-            $next_page_parent = "all gone";
-        }
-        echo "<li class='page_item page-item-" . $page['ID'] . "'>";
-        echo "<a href='" . get_permalink( $pages_associative[$page['ID']] ) . "'>" . $pages_associative[$page['ID']]->post_title . "</a>";
-
-        // special behaviour to create children of "what's on" page
-        if ($page['ID'] == 7){
-            echo "<ul>";
-            $parents[] = $page['ID'];
-            foreach ($courses as $course) {
-                echo "<li class='course_item course-item-" . $course->ID . "'>";
-                echo "<a href='" . get_permalink( $course->ID ) . "'>" . $course->post_title . "</a>";
-                echo "</li>";
-            }
-            if ($next_page_parent != end($parents)) {
-                array_pop($parents);
-                echo "</ul>";
-            }
-        }
-
-        // special behaviour to create children of "tutors" page
-        if ($page['ID'] == 11){
-            echo "<ul>";
-            $parents[] = $page['ID'];
-            foreach ($tutors as $tutor) {
-                echo "<li class='tutor_item tutor-item-" . $tutor->ID . "'>";
-                echo "<a href='" . get_permalink( $tutor->ID ) . "'>" . $tutor->post_title . "</a>";
-                echo "</li>";
-            }
-            if ($next_page_parent != end($parents)) {
-                array_pop($parents);
-                echo "</ul>";
-            }
-        }
-
-        if (!in_array($next_page_parent, $parents)) {
-            echo "<ul>";
-            $parents[] = $next_page_parent;
-        } else {
-            echo "</li>";
-            while ($next_page_parent != end($parents)) {
-                array_pop($parents);
-                echo "</ul>";
-                echo "</li>";
-            }
-        }
-    }
-    echo "</ul>";
-    ?>
-
-<?php }
-
 
 function print_course_info ($meta, $brief = false) {
 
@@ -349,6 +261,88 @@ function print_course_location_map ($meta) {
     <a class="reset-map" href="#reset-map">Reset map</a>
 
 <?php }
+
+
+// returns an array of all courses with events in the future with the post_meta stored in the 'meta' property
+function get_forthcoming_courses_and_metadata() {
+    global $wpdb;
+    $output = [];
+
+    $courses = $wpdb->get_results("SELECT * FROM wp_posts
+                                   WHERE post_type = 'course'
+                                   AND post_status = 'publish'");
+
+    foreach ($courses as $course) {
+        $meta = get_post_meta( $course->ID );
+        $course->meta = $meta;
+
+        if ( are_events_forthcoming($course) ) {
+            $output[] = $course; 
+        }
+    }
+
+    return $output;
+}
+
+// takes a course object with added "meta" property,
+// and returns true or false depending on whether that course has any events which start in the future
+function are_events_forthcoming($course) {
+    $cutoff = new DateTime();
+
+    $initial_date = intval($course->meta['_ta_initial_date'][0]);
+    $num_weeks = intval($course->meta['_ta_num_weeks'][0]);
+
+    $final_date = new DateTime();
+    $final_date->setTimestamp($initial_date);
+
+    $final_date->add(new DateInterval("P" . ($num_weeks - 1) . "W")); // counts forward by ($num_weeks - 1) weeks
+
+    $output = $final_date > $cutoff;
+
+    return $output;
+}
+
+// takes a course object with added "meta" property,
+// and returns the date of the first event in the future
+// or FALSE if no events in the future.
+function get_next_event_date($course) {
+    $cutoff = new DateTime();
+
+    $initial_date = intval($course->meta['_ta_initial_date'][0]);
+    $num_weeks = intval($course->meta['_ta_num_weeks'][0]);
+
+    $event_date = new DateTime();
+    $event_date->setTimestamp($initial_date);
+
+    for ($i=0; $i < $num_weeks; $i++) { 
+
+        if ($event_date > $cutoff) {
+            return $event_date;
+        }
+
+        $event_date->add(new DateInterval("P1W"));
+    }
+
+    return false;
+}
+
+// takes the ID of a course location
+// and returns a string containing the short address
+function get_short_address($id) {
+    $location = get_post($id);
+    $location_meta = get_post_meta($id);
+
+    if (isset($location_meta['_cmb_short_address']) && $location_meta['_cmb_short_address'][0] !== "") {
+        $short_address = $location_meta['_cmb_short_address'][0];
+    } elseif (isset($location->post_title) && $location->post_title !== "") {
+        $short_address = $location->post_title;
+    } else {
+        $short_address = false;
+    }
+
+    return $short_address;
+}
+
 
 function get_courses_for_sidebar () {
     global $wpdb;

@@ -46,8 +46,14 @@ header {
 	div {
 		background-color: rgba(255, 255, 255, 0.85);
 		padding: 10px;
+	}
+	p {
+		margin: 0;
+	}
+	p.warning {
 		font-weight: bold;
-		font-size: 150%;		
+		font-size: 150%;
+		margin-bottom: 0.5em;
 	}
 }
 
@@ -428,8 +434,6 @@ button {
   display: table;
   clear: both;
 }
-
-
 
 main > section:nth-of-type(odd) {
 	background-color: $lightGrey;
