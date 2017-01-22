@@ -1,5 +1,7 @@
 <?php
 
+// USE THIS DOC FOR BASIC CONFIG AND FIXES TO DEFAULT WORDPRESS BEHAVIOUR
+
 // this is necessary for the calendar to process daylight savings time correctly
 date_default_timezone_set('Europe/London');
 
@@ -65,6 +67,12 @@ class fixImageMargins{
     }
 }
 $fixImageMargins = new fixImageMargins();
+
+// also bung dis here https://css-tricks.com/snippets/wordpress/remove-paragraph-tags-from-around-images/
+function filter_ptags_on_images($content){
+   return preg_replace('/<p>\s*(<a .*>)?\s*(<img .* \/>)\s*(<\/a>)?\s*<\/p>/iU', '\1\2\3', $content);
+}
+add_filter('the_content', 'filter_ptags_on_images');
 
 
 // set excerpt length

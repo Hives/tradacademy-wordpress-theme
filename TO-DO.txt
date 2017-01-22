@@ -7,6 +7,8 @@
 
 - "upcoming courses" in sidebar ~ sort them in a good order
 
+why is the p element following an image rendering as if it contains the image?!
+
 Templates:
  - footer.php (the footer)
  - header.php (the header)

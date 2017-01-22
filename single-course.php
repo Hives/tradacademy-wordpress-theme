@@ -24,9 +24,11 @@ $new = 1; // triggers new header, <head> element etc.
 			<?php the_content(); ?>			
 		</section>
 		<aside class="location two-col-side">
-			<h3>Location</h3>
-			<div class="clearfix">
-				<?php print_course_location_map($meta); ?>
+			<div class="container">
+				<h3>Where is it?</h3>
+				<div class="details clearfix">
+					<?php print_course_location_map($meta); ?>
+				</div>
 			</div>
 		</aside>
 	</article>

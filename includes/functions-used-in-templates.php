@@ -172,6 +172,7 @@ function print_course_info ($meta, $brief = false) {
         $final_timestamp = $final_date->getTimestamp();
     }
 
+    // DATE DETAILS
     if ($num_weeks > 1) {
         echo date('l', $initial_timestamp) . "s ∙ ";
         echo date('g:ia', $initial_timestamp) . " - " . date('g:ia', $initial_timestamp + $duration) . " ∙ ";
@@ -203,13 +204,13 @@ function print_course_info ($meta, $brief = false) {
         $address = $location->post_title;
     }
     if ($address != "") {
-        echo $address .  "<br />";
+        echo "at " . $address .  "<br />";
     }
 
     // TUTOR
     $tutor = isset($meta['_cmb_tutor'][0]) ? $meta['_cmb_tutor'][0] : "";
     if ($tutor !== "") {
-        echo "With " . $tutor . "<br />";
+        echo "with " . $tutor . "<br />";
     }
 
     // MAIL US
@@ -458,15 +459,20 @@ function print_whats_coming_up_carousel() {
 
             <?php foreach ($coming_up as $course) { ?>
 
-                <div>
-                    <a href="<?= $course['url']; ?>">
-                        <h3><?= $course['title']; ?></h3>
-                    </a>
+                <div class="carousel-item">
+                    <h3>
+                        <a href="<?= $course['url']; ?>">
+                            <?= $course['title']; ?>
+                        </a>
+                    </h3>
                     <div class="image" style="background-image: url('<?= $course['thumbnail'][0]; ?>')"></div>
-                    <!-- <img src="<?= $course['thumbnail'][0]; ?>"> -->
-                    <div class="date"><?= $course['date']; ?></div>
-                    <div class="location"><?= $course['location']; ?></div>
-                    <div><?= $course['excerpt']; ?></div>
+                    <div class="info">
+                        <p class="meta">
+                            <?= $course['date']; ?><br>
+                            <?= $course['location']; ?>
+                        </p>
+                        <p class="description"><?= $course['excerpt']; ?></p>
+                    </div>
                 </div>
 
             <?php } ?>              

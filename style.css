@@ -12,10 +12,18 @@ Version: 0.6
 
 html {
   font-size: 16pt;
-  line-height: 1.3em; }
+  line-height: 1.5;
+  font-family: 'Raleway', sans-serif; }
 
 header {
   text-align: center; }
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Libre Baskerville', serif;
+  color: #353e28; }
+  h1 a, h2 a, h3 a, h4 a, h5 a, h6 a {
+    text-decoration: none;
+    color: inherit; }
 
 #test-server-warning {
   background-image: url(img/stripe.png);
@@ -46,8 +54,7 @@ header {
   height: 159px; }
 
 .navbar {
-  line-height: 1em;
-  background-color: #eee; }
+  background-color: #cda34f; }
 
 .navbar-toggle {
   display: none; }
@@ -60,7 +67,7 @@ header {
   height: 1px;
   margin: 9px 0;
   overflow: hidden;
-  background-color: #ccc; }
+  background-color: #e0ddcb; }
 #primary_nav_wrap a .course-dates {
   font-style: italic;
   font-size: 70%; }
@@ -87,14 +94,14 @@ header {
         #primary_nav_wrap ul li.current-menu-item {
           background: #ddd; }
         #primary_nav_wrap ul li:hover {
-          background: #ccc; }
+          background: #e0ddcb; }
           #primary_nav_wrap ul li:hover > ul {
             display: block; }
       #primary_nav_wrap ul ul {
         display: none;
         position: absolute;
         z-index: 1;
-        background: #eee;
+        background: #e9e7da;
         padding: 0;
         white-space: nowrap; }
         #primary_nav_wrap ul ul li {
@@ -115,12 +122,12 @@ header {
     width: 38px;
     height: 30px;
     background-color: white;
-    border: 1px solid #ccc;
+    border: 1px solid #e0ddcb;
     border-radius: 4px;
     margin-top: 6px;
     margin-left: 15px; }
     .navbar-toggle:hover {
-      background-color: #eee; }
+      background-color: #e9e7da; }
     .navbar-toggle:focus {
       outline: 0; }
     .navbar-toggle .icon-bar {
@@ -135,19 +142,19 @@ header {
   #primary_nav_wrap {
     display: none;
     clear: both;
-    background-color: #eee; }
+    background-color: #e9e7da; }
     #primary_nav_wrap ul {
       padding: 0;
       margin: 0;
-      border-top: thin solid #ccc;
-      border-bottom: thin solid #ccc; }
+      border-top: thin solid #e0ddcb;
+      border-bottom: thin solid #e9e7da; }
     #primary_nav_wrap a {
       padding-top: 4px;
       padding-bottom: 4px;
       color: #444;
       display: block; }
       #primary_nav_wrap a:hover {
-        background-color: #ccc; }
+        background-color: #e0ddcb; }
     #primary_nav_wrap ul ul > li a {
       padding-left: 40px; }
     #primary_nav_wrap ul ul ul > li a {
@@ -174,10 +181,12 @@ header {
   min-height: 1em; }
   @media only screen and (min-width: 1024px) {
     .two-col-main {
+      padding: 0 10px;
       float: left;
       width: 66.66667%; } }
   @media only screen and (max-width: 1024px) {
     .two-col-main {
+      padding: 0 10px;
       float: left;
       width: 100%; } }
 
@@ -193,13 +202,35 @@ header {
       float: right;
       width: 100%; } }
 
+.single-course h1 {
+  margin-bottom: 0; }
+.single-course header {
+  margin: 20px 0; }
+.single-course .course-info {
+  font-size: 0.8em;
+  font-style: italic; }
+.single-course section {
+  background-color: inherit; }
 .single-course .course-description img {
+  margin: 20px 0;
   max-width: 100%;
   height: auto; }
-
-/* coming up carousel */
-#coming-up .date, #coming-up .location {
-  font-style: italic; }
+.single-course aside {
+  background-color: inherit; }
+  .single-course aside .container {
+    margin: 10px;
+    padding: 20px;
+    border-radius: 10px;
+    background-color: #e9e7da; }
+  .single-course aside h3 {
+    margin-top: 0; }
+  .single-course aside .details {
+    font-size: 0.7em; }
+  .single-course aside .google-map {
+    width: 100%;
+    height: 200px;
+    background-image: url(img/map.png);
+    border: thin solid #cda34f; }
 
 #coming-up .button {
   border-radius: 20px;
@@ -214,7 +245,18 @@ header {
   margin: 0 40px; }
 
 .carousel-item {
-  padding: 10px; }
+  background-color: #fff;
+  border-radius: 15px;
+  margin: 0 15px; }
+  .carousel-item h3 {
+    margin: 15px; }
+  .carousel-item p {
+    margin: 15px 0; }
+  .carousel-item .info {
+    padding: 0 15px; }
+  .carousel-item .meta {
+    font-size: 70%;
+    font-style: italic; }
 
 .slick-prev:before,
 .slick-next:before {
@@ -227,9 +269,6 @@ header {
   height: 300px;
   background-size: cover;
   background-position: 50% 50%, center; }
-
-.slick-slide {
-  padding: 10px; }
 
 .slick-prev {
   left: -40px; }
@@ -271,15 +310,15 @@ button {
   clear: both; }
 
 main > section:nth-of-type(odd) {
-  background-color: #eee; }
+  background-color: #e9e7da; }
 
 main > section:nth-of-type(even) {
-  background-color: #ccc; }
+  background-color: #e0ddcb; }
 
 main > div > article:nth-of-type(odd) {
-  background-color: #eee; }
+  background-color: #e9e7da; }
 
 main > div > article:nth-of-type(even) {
-  background-color: #ccc; }
+  background-color: #e0ddcb; }
 
 /*# sourceMappingURL=style.css.map */

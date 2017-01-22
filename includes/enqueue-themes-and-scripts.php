@@ -12,6 +12,11 @@ function theme_styles() {
         $media = 'all'
     );
     wp_enqueue_style(
+        "googlefonts",
+        $src = "https://fonts.googleapis.com/css?family=Libre+Baskerville|Raleway",
+        $media = 'all'
+    );
+    wp_enqueue_style(
         "main",
         $src = get_template_directory_uri() . '/style.css',
         $media = 'all'
