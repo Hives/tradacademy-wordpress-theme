@@ -15,7 +15,7 @@ $new = 1; // triggers new header, <head> element etc.
 	<article class="single-course vertical-section clearfix">
 		<header>
 			<h1><?php the_title(); ?></h1>
-			<div class="course-info">
+			<div class="course-info details">
 				<?php print_course_info($meta); ?>
 			</div>
 			<?php print_social_media_buttons(); ?>
@@ -26,7 +26,7 @@ $new = 1; // triggers new header, <head> element etc.
 		<aside class="location two-col-side">
 			<div class="container">
 				<h3>Where is it?</h3>
-				<div class="details clearfix">
+				<div class="sidebar-content details clearfix">
 					<?php print_course_location_map($meta); ?>
 				</div>
 			</div>

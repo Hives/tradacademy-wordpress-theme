@@ -7,7 +7,7 @@
 
 - "upcoming courses" in sidebar ~ sort them in a good order
 
-why is the p element following an image rendering as if it contains the image?!
+why is the p element following an image rendering as if it contains the image?! - because the image is floated
 
 Templates:
  - footer.php (the footer)

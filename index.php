@@ -6,21 +6,24 @@ $new = 1; // triggers new header, <head> element etc.
 
 <?php get_header(); ?>
 
-<main>
-	<div class="vertical-section">
+<main class="vertical-section">
+	<div class="two-col-main clearfix">
+
 		<?php if ( have_posts() ) : while ( have_posts() ) : the_post(); ?>
-			<article class="two-col-main clearfix">
+			<article class="news-item">
 				<header>
 					<?php if ( is_single() ): ?>
 						<h1><?php the_title(); ?></h1>
 					<?php else: ?>
 						<h1><a href="<?php the_permalink(); ?>" title="<?php the_title_attribute(); ?>"><?php the_title(); ?></a></h1>
 					<?php endif; ?>
-					<div class="blog-meta">
-						Posted by <?php the_author(); ?> on <?php the_date(); ?>
-					</div>
 				</header>
 				<?php the_content(); ?>
+				<footer>
+					<div class="details blog-meta">
+						Posted by <strong><?php the_author(); ?></strong> on <strong><?php the_date(); ?></strong>
+					</div>					
+				</footer>
 			</article>
 		<?php endwhile; ?>
 
@@ -36,16 +39,17 @@ $new = 1; // triggers new header, <head> element etc.
 		<?php endif; ?>
 
 		<?php //posts_nav_link(' ','<span class="alignleft">Newer Posts</span>','<span class="alignright">Previous Posts</span>'); ?>
-		<div class="navigation"><?php posts_nav_link( $sep = '' ); ?></div>
+		<div class="news-navigation navigation"><?php posts_nav_link( $sep = '' ); ?></div>
 
 		<?php else: ?>
 			<p><?php _e( 'Sorry, no posts matched your criteria.' ); ?></p>
 	  	<?php endif; ?>
-
-	  	<aside>
-	  		
-	  	</aside>
   	</div>
+
+	<aside id="sidebar" class="two-col-side">
+		<?php get_sidebar(); ?>
+	</aside>
+
 </main>
 
 <?php // get_sidebar(); ?>
